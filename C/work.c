@@ -1357,15 +1357,15 @@ void InitializingPoker(Poker card[])
     i=j=k=0;
     while(i<M)
     {
-        if(j==4)
+        if(k==13)
         {
-            j=0;
-            k++;
+            k=0;
+            j++;
         }
         strcpy(card[i].suit,dst[j]);
         strcpy(card[i].face,str[k]);
         i++;
-        j++;
+        k++;
     }
 }
 
@@ -1373,12 +1373,12 @@ void ShufflingPoker(Poker card[])
 {
     int x,y;
     int i;
-    for(i=0;i<10000;i++)
+    for(i=0;i<60;i++)
     {
         srand((unsigned int)time(NULL));
-        x=rand()%53;
-        srand((unsigned int)time(NULL));
-        y=rand()%53;
+        x=rand()%52;
+        y=rand()%52;
+        Sleep(1000);
         if(x!=y)
         {
             strcpy(card[x].suit,card[y].suit);
@@ -1393,7 +1393,7 @@ void ShufflingPoker(Poker card[])
 
 void AssigningPoker(Poker card[])
 {
-    Poker* people[A][B];
+    Poker* people[A][B]={NULL};
     int i,j,k;
     i=j=k=0;
     while(i<M)
@@ -1403,23 +1403,36 @@ void AssigningPoker(Poker card[])
             k++;
             j=0;
         }
-        strcpy(people[j][k]->suit,card[i].suit);
-        strcpy(people[j][k]->face,card[i].face);
+        people[j][k]=&card[i];
         i++;
         j++;
+    }
+    printf("Assigning Result:\n");
+    for(i=0;i<A;i++)
+    {
+        printf("No.%d:\n",i+1);
+        for(j=0;j<B;j++)
+        {
+            printf("%-8s.%-8s",people[i][j]->suit,people[i][j]->face);
+            if(j%4==0)
+            {
+                printf("\n");
+            }
+        }
+        printf("\n");
     }
 }
 
 void PrintPoker(Poker card[])
 {
-    int i,j;
-    for(i=0;i<B;i++)
+    int i;
+    for(i=0;i<M;i++)
     {
-        for(j=0;j<A;j++)
+        printf("%-8s.%-8s",card[i].suit,card[i].face);
+        if((i+1)%4==0)
         {
-            printf("%-8s.%-8s",card[i].suit,card[i].face);
+            printf("\n");
         }
-        printf("\n");
     }
 }
 
@@ -1428,9 +1441,11 @@ int main(void)
     Poker card[M];
     InitializingPoker(card);
     PrintPoker(card);
-    printf("\n\n\n");
+    printf("\n\n");
+    printf("Shffle pokers now.Please wait sometime...\n\n");
     ShufflingPoker(card);
     PrintPoker(card);
+    printf("\n\n");
     AssigningPoker(card);
     return 0;
 }
