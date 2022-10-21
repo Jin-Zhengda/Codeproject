@@ -1333,9 +1333,104 @@
 // }
 
 
+//Ä£ÄâÆË¿ËÏ´ÅÆ·¢ÅÆ
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#define N 10
+#define M 52
+#define A 4
+#define B 13
 
-int main(int argc,char *argv[])
+typedef struct poker{
+    char suit[N];
+    char face[N];
+}Poker;
+
+char dst[][N]={"Spades","Hearts","Clubs","Diamonds"};
+char str[][B]={"A","1","2","3","4","5","6","7","8","9","10","Jack","Queen","King"};
+
+void InitializingPoker(Poker card[])
 {
+    int i,j,k;
+    i=j=k=0;
+    while(i<M)
+    {
+        if(j==4)
+        {
+            j=0;
+            k++;
+        }
+        strcpy(card[i].suit,dst[j]);
+        strcpy(card[i].face,str[k]);
+        i++;
+        j++;
+    }
+}
+
+void ShufflingPoker(Poker card[])
+{
+    int x,y;
+    int i;
+    for(i=0;i<10000;i++)
+    {
+        srand((unsigned int)time(NULL));
+        x=rand()%53;
+        srand((unsigned int)time(NULL));
+        y=rand()%53;
+        if(x!=y)
+        {
+            strcpy(card[x].suit,card[y].suit);
+            strcpy(card[x].face,card[y].face);
+        }
+        else 
+        {
+            continue;
+        }
+    }
+}
+
+void AssigningPoker(Poker card[])
+{
+    Poker* people[A][B];
+    int i,j,k;
+    i=j=k=0;
+    while(i<M)
+    {
+        if(j==4)
+        {
+            k++;
+            j=0;
+        }
+        strcpy(people[j][k]->suit,card[i].suit);
+        strcpy(people[j][k]->face,card[i].face);
+        i++;
+        j++;
+    }
+}
+
+void PrintPoker(Poker card[])
+{
+    int i,j;
+    for(i=0;i<B;i++)
+    {
+        for(j=0;j<A;j++)
+        {
+            printf("%-8s.%-8s",card[i].suit,card[i].face);
+        }
+        printf("\n");
+    }
+}
+
+int main(void)
+{
+    Poker card[M];
+    InitializingPoker(card);
+    PrintPoker(card);
+    printf("\n\n\n");
+    ShufflingPoker(card);
+    PrintPoker(card);
+    AssigningPoker(card);
     return 0;
 }
