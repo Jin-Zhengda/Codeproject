@@ -1488,5 +1488,30 @@
 // }
 
 
+#include <stdio.h>
 
+int main(void)
+{
+    float x,y;
+    scanf("%f",&x);
+    switch(x<1)
+    {
+        case 0:
+            switch(x>=1&&x<10)
+            {
+                case 0:
+                    y=3*x*x-5;
+                    break;
+                case 1:
+                    y=2*x+1;
+                    break;
+            }
+            break;
+        case 1:
+            y=x;
+            break;
+    }
+    printf("\n%f\n",y);
+    return 0;
+}
 
