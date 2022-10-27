@@ -1585,3 +1585,422 @@
 //     }
 //     return 0;
 // }
+
+
+//使用栈的顺序结构实现逆波兰表达式的计算
+// #include <stdio.h>
+// #include <string.h>
+// #include <ctype.h>
+// #include <stdlib.h>
+// #define INT 1
+// #define FlT 2
+// #define N 20
+
+// typedef struct node
+// {  
+//    int type;
+//    union
+//    {
+//       int ival;
+//       double dval;
+//    }dat;
+// }NodeType;
+// typedef struct stack
+// {
+//    NodeType data[N];
+//    int top;            //控制栈顶
+// }STACK;                 //栈的顺序存储
+
+// void Push(STACK* stack,NodeType data);
+// NodeType Pop(STACK* stack);
+// NodeType Op(NodeType d1,NodeType d2,int op);
+// NodeType OpData(NodeType* d1,NodeType* d2,int op);
+
+// int main(void)
+// {
+//    char word[N];
+//    NodeType d1,d2,d3;
+//    int i;
+//    STACK stack;
+//    stack.top=0;    //初始化栈顶
+    
+//    while(scanf("%s",word)==1&&word[0]!='#')    //以空格为分隔符输入逆波兰表达式，以#结束
+//    {
+//          if(isdigit(word[0]))    //若为数字，则转化为整形后压栈
+//          {
+//             d1.type=0;
+//             for(i=0;i<strlen(word);i++)
+//             {
+//                if(word[i]=='.')
+//                {
+//                   d1.type=1;
+//                }
+//             }
+//             if(d1.type==0)
+//             {
+//                d1.dat.ival=atoi(word); //将word转换为整型数据
+//             }
+//             else
+//             {
+//                d1.dat.dval=atof(word);
+//             }
+//             Push(&stack,d1);
+//          }
+//          else                    //否则弹出两个操作数，执行相应的运算后再将结果压栈
+//          {
+//             d2=Pop(&stack);
+//             d1=Pop(&stack);
+//             d3=OpData(&d1,&d2,word[0]); //执行运算
+//             Push(&stack,d3);            //运算结果压入堆栈
+//          }
+//    }
+//    d1=Pop(&stack);     //弹出栈顶保存的最终计算结果
+//    if(d1.type==0)
+//    {
+//       printf("%d\n",d1.dat.ival);
+//    }
+//    else
+//    {
+//       printf("%f\n",d1.dat.dval);
+//    }
+//     return 0;
+// }
+
+// void Push(STACK* stack,NodeType data)   //将数据data压入堆栈
+// {
+//     memcpy(&stack->data[stack->top],&data,sizeof(NodeType));
+//     stack->top=stack->top+1;    //改变栈顶指针
+// }
+
+// NodeType Pop(STACK* stack)      //弹出栈顶数据并返回
+// {
+//     stack->top=stack->top-1;
+//     return stack->data[stack->top];
+// }
+
+// NodeType Op(NodeType d1,NodeType d2,int op)    //对数据d1和d2执行运算op，并返回计算结果
+// {
+//     NodeType res;
+//     if(d1.type==0&&d2.type==0)
+//     {
+//       res.type=0;
+//       switch(op)
+//       {
+//          case '+':
+//                res.dat.ival=d1.dat.ival+d2.dat.ival;
+//                break;
+//          case '-':
+//                res.dat.ival=d1.dat.ival-d2.dat.ival;
+//                break;
+//          case '*':
+//                res.dat.ival=d1.dat.ival*d2.dat.ival;
+//                break;
+//          case '/':
+//                res.dat.ival=d1.dat.ival/d2.dat.ival;
+//                break;
+//       }
+//    }
+//    else if(d1.type==0&&d2.type==1)
+//    {
+//       res.type=1;
+//       switch(op)
+//       {
+//          case '+':
+//                res.dat.dval=d1.dat.ival+d2.dat.dval;
+//                break;
+//          case '-':
+//                res.dat.dval=d1.dat.ival-d2.dat.dval;
+//                break;
+//          case '*':
+//                res.dat.dval=d1.dat.ival*d2.dat.dval;
+//                break;
+//          case '/':
+//                res.type=0;
+//                res.dat.ival=d1.dat.ival/(int)d2.dat.dval;
+//                break;
+//       }
+//    }
+//    else if(d1.type==1&&d2.type==0)
+//    {
+//       res.type=1;
+//       switch(op)
+//       {
+//          case '+':
+//                res.dat.dval=d1.dat.dval+d2.dat.ival;
+//                break;
+//          case '-':
+//                res.dat.dval=d1.dat.dval-d2.dat.ival;
+//                break;
+//          case '*':
+//                res.dat.dval=d1.dat.dval*d2.dat.ival;
+//                break;
+//          case '/':
+//                res.type=0;
+//                res.dat.ival=d1.dat.dval/d2.dat.ival;
+//                break;
+//       }
+//    }
+//    else
+//    {
+//       res.type=1;
+//       switch(op)
+//       {
+//          case '+':
+//                res.dat.dval=d1.dat.dval+d2.dat.dval;
+//                break;
+//          case '-':
+//                res.dat.dval=d1.dat.dval-d2.dat.dval;
+//                break;
+//          case '*':
+//                res.dat.dval=d1.dat.dval*d2.dat.dval;
+//                break;
+//          case '/':
+//                res.type=0;
+//                res.dat.ival=(int)d1.dat.dval/(int)d2.dat.dval;
+//                break;
+//       }
+//    }
+//    return res;
+// }
+
+// NodeType OpData(NodeType* d1,NodeType* d2,int op)   //对d1和d2执行运算op，并返回计算结果
+// {
+//     NodeType res;
+//     res=Op(*d1,*d2,op);
+//     return res;
+// }
+
+
+//记账系统
+#include <stdio.h>
+#include <string.h>
+#define N 10
+
+typedef struct 
+{
+    int ID;
+    char Username[N];
+    int income;
+    int expense;
+}Acount;
+
+int EmptyRecord(Acount acount[]);
+int InputRecord(Acount acount[]);
+void SortRecord(Acount acount[],int n);
+void SearchRecord(Acount acount[],int n);
+void AverageRecord(Acount acount[],int n,float* averincome,float* averexpense);
+void LargerRecord(Acount acount[],int n,float averexpense);
+void OutputRecord(Acount acount[],int n);
+
+int main(void)
+{
+    Acount acount[N]={0};
+    float averincome;
+    float averexpense;
+    int flag,n;
+    do
+    {
+        printf("1.Input record\n");
+        printf("2.Sort and list records in reverse order by user name\n");
+        printf("3.Search records by user name\n");
+        printf("4.Calculate and list per capita income and expenses\n");
+        printf("5.List records which have more expenses than per capita expenses\n");
+        printf("6.List all records\n");
+        printf("0.Exit\n");
+        printf("Please enter your choice:");
+        scanf("%d",&flag);
+        switch(flag)
+        {
+            case 0:
+                break;
+            case 1:
+                n=InputRecord(acount);
+                break;
+            case 2:
+                if(!EmptyRecord(acount))
+                {
+                    break;
+                }
+                SortRecord(acount,n);
+                break;
+            case 3:
+                if(!EmptyRecord(acount))
+                {
+                    break;
+                }
+                SearchRecord(acount,n);
+                break;
+            case 4:
+                if(!EmptyRecord(acount))
+                {
+                    break;
+                }
+                AverageRecord(acount,n,&averincome,&averexpense);
+                printf("Per capita income:%.2f\n",averincome);
+                printf("Per capita expenses:%.2f\n",averexpense);
+                break;
+            case 5:
+                if(!EmptyRecord(acount))
+                {
+                    break;
+                }
+                LargerRecord(acount,n,averexpense);
+                break;
+            case 6:
+                if(!EmptyRecord(acount))
+                {
+                    break;
+                }
+                OutputRecord(acount,n);
+                break;
+            default:
+                printf("Input Error!\n");
+                break;
+        }
+    } while (flag!=0);
+    return 0;
+}
+
+int EmptyRecord(Acount acount[])
+{
+    int flag=1;
+    if(acount[0].ID==0)
+    {
+        printf("There is no data yet. Please choose 1 to input the data first.\n");
+        flag=0;
+    }
+    return flag;
+}
+
+int InputRecord(Acount acount[])
+{
+    int i,n;
+    char ch=0;
+    printf("Input the total of people:");
+    scanf("%d",&n);
+    while(n<=0||n>=10)
+    {
+        if(n>=10)
+        {
+            printf("The system can only store the information of 10 people at most. Please re-enter.\n");
+        }
+        else
+        {
+            printf("The system can only store the information of 1 people at least. Please re-enter.\n");
+        }
+        scanf("%d",&n);
+    }
+    printf("Please input user's ID, name, income and expenses: (format as:10001 Cindy 6000 1500)\n");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&acount[i].ID);
+        ch=getchar();
+        fgets(acount[i].Username,sizeof(acount[i].Username),stdin);
+        scanf("%d",&acount[i].income);
+        scanf("%d",&acount[i].expense);
+    }
+    return n;
+}
+
+void SortRecord(Acount acount[],int n)
+{
+    Acount* pstr[N]={NULL};
+    Acount t;
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        pstr[i]=&acount[i];
+    }
+    for(i=0;i<n-1;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(strcmp(pstr[i]->Username,pstr[j]->Username)>=0)
+            {
+                t=*pstr[i];
+                *pstr[i]=*pstr[j];
+                *pstr[j]=t;
+            }
+        }
+    }
+    printf("ID\tUserName\tIncome\tExpenses\t\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t%s\t%d\t%d\t\n",pstr[i]->ID,pstr[i]->Username,pstr[i]->income,pstr[i]->expense);
+    }
+}
+
+void SearchRecord(Acount acount[],int n)
+{
+    char name[N]={0};
+    int i,find=0;
+    printf("Please input the user name:");
+    fgets(name,N,stdin);
+    for(i=0;i<n;i++)
+    {
+        if(strcmp(acount[i].Username,name)==0)
+        {
+            printf("ID\tUserName\tIncome\tExpenses\t\n");
+            printf("%d\t%s\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+            find=1;
+        }
+    }
+    if(!find)
+    {
+        printf("Not Found!");
+    }
+}
+
+void AverageRecord(Acount acount[],int n,float* averincome,float* averexpense)
+{
+    float sum1=0,sum2=0;
+    int i;
+    for(i=0;i<n;i++)
+    {
+        sum1=sum1+(float)acount[i].income;
+        sum2=sum2+(float)acount[i].expense;
+    }
+    *averincome=sum1/n;
+    *averexpense=sum2/n;
+}
+
+void LargerRecord(Acount acount[],int n,float averexpense)
+{
+    int i;
+    printf("ID\tUserName\tIncome\tExpenses\t\n");
+    for(i=0;i<n;i++)
+    {
+        if(acount[i].expense>averexpense)
+        {          
+            printf("%d\t%s\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+        }
+    }
+}
+
+void OutputRecord(Acount acount[],int n)
+{
+    Acount* pstr[N]={NULL};
+    Acount t;
+    int i,j;
+    for(i=0;i<n;i++)
+    {
+        pstr[i]=&acount[i];
+    }
+    for(i=0;i<n-1;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(pstr[i]->ID<=pstr[j]->ID)
+            {
+                t=*pstr[i];
+                *pstr[i]=*pstr[j];
+                *pstr[j]=t;
+            }
+        }
+    }
+    printf("ID\tUserName\tIncome\tExpenses\t\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t%s\t%d\t%d\t\n",pstr[i]->ID,pstr[i]->Username,pstr[i]->income,pstr[i]->expense);
+    }
+}
