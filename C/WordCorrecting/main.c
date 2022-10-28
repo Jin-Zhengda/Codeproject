@@ -13,11 +13,10 @@ int main(void)
     FILE* fp2;
     FILE* fp3;
     int ch,ch1,ch2;
-    int i,j,n,min=0,cnt=0,f=1;
+    int i,n,min=0,cnt=0,f=1,flag=1;
     char str[N]={0};
     char dst[N]={0};
     char temp[N]={0};
-    int flag=1;
     ch=ch1=ch2=0;
     fp1=fopen("words.txt","r");
     fp2=fopen("vocabulary.txt","r");
@@ -31,7 +30,9 @@ int main(void)
             printf("%c",ch);
             fputc(ch,fp3);
         } while (!(ch==' '||ch==-1));
+
         flag=1;
+        
         while(flag)
         {
             for(i=0;i<N;i++)
