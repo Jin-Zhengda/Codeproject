@@ -13,7 +13,7 @@ int main(void)
     FILE* fp2;
     FILE* fp3;
     int ch,ch1,ch2;
-    int i,j,n,min=0,cnt=0;
+    int i,j,n,min=0,cnt=0,f=1;
     char str[N]={0};
     char dst[N]={0};
     char temp[N]={0};
@@ -24,15 +24,22 @@ int main(void)
     fp3=fopen("words_correct.txt","w");
     while(!feof(fp1))
     {
+        
         do
         {
             ch=fgetc(fp1);
             printf("%c",ch);
             fputc(ch,fp3);
         } while (!(ch==' '||ch==-1));
+        flag=1;
         while(flag)
         {
+            for(i=0;i<N;i++)
+            {
+                str[i]=0;
+            }
             i=0;
+
             do
             {
                 ch1=fgetc(fp1);
@@ -41,9 +48,9 @@ int main(void)
                     str[i]=(char)ch1;
                     i++;
                 }
-                if(!isprint((char)ch1)&&ch1!='\n')
+                if((!isprint((char)ch1))&&ch1!='\n'&&ch1!=-1)
                 {
-                    while(ch1!='/')
+                    while(ch1>=127||ch1<=64)
                     {
                         ch1 = fgetc(fp1);
                     }
@@ -53,6 +60,7 @@ int main(void)
                     flag=0;
                 }
             }while(flag);
+
             flag=1;
             while(!feof(fp2))
             {
@@ -74,24 +82,47 @@ int main(void)
                         flag=0;
                     }
                 }while(flag);
-                cnt++;
-                if(cnt==1)
-                {
-                    min= Levenshtein(str,dst);
-                    strcpy(temp,str);
-                }
-                n= Levenshtein(str,dst);
-                if(n==0)
-                {
-                    goto out;
-                }
-                else if(min>n)
-                {
-                    min=n;
-                    strcpy(temp,dst);
-                }
+
                 flag=1;
-            }
+
+                for(i=0;i<strlen(dst);i++)
+                {
+                    if(dst[i]==' ')
+                    {
+                        f=0;
+                        break;
+                    }
+                }
+
+                if(f)
+                {
+                    cnt++;
+                    if(cnt==1)
+                    {
+                        for(i=0;i<N;i++)
+                        {
+                            temp[i]=0;
+                        }
+                        min=Levenshtein(str,dst);
+                        strcpy(temp,str);
+                    }
+                    n= Levenshtein(str,dst);
+                    if(n==0)
+                    {
+                        strcpy(temp,str);
+                        goto out;
+                    }
+                    else if(min>n)
+                    {
+                        min=n;
+                        for(i=0;i<N;i++)
+                        {
+                            temp[i]=0;
+                        }
+                        strcpy(temp,dst);
+                    }                  
+                }   
+            }  
             out:
             cnt=0;
             rewind(fp2);
@@ -105,7 +136,8 @@ int main(void)
             if(ch1=='\n'||ch1==-1)
             {
                 flag=0;
-            }
+            }   
+             
         }
     }
     fclose(fp1);
