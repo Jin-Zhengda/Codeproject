@@ -1792,7 +1792,7 @@
 // void LargerRecord(Acount acount[],int n,float averexpense);
 // void OutputRecord(Acount acount[],int n);
 // void WrintFile(Acount acount[],int n);
-// void ReadFile(Acount acount[],int n,FILE* fp);
+// int ReadFile(Acount acount[],FILE* fp);
 
 // int main(void)
 // {
@@ -1875,7 +1875,7 @@
 //                     printf("Cannot find this file!\n");
 //                     break;
 //                 }
-//                 ReadFile(acount,n,fp);
+//                 n=ReadFile(acount,fp);
 //                 break;
 //             default:
 //                 printf("Input Error!\n");
@@ -2037,26 +2037,36 @@
 //     printf("Please input the file name:");
 //     scanf("%s",str);
 //     fp=fopen(str,"w");
-//     fprintf(fp,"ID\tUserName\tIncome\tExpenses\t\n");
+//     fprintf(fp,"ID\tUserName\tIncome\tExpenses\n");
 //     for(i=0;i<n;i++)
 //     {
-//         fprintf(fp,"%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+//         fprintf(fp,"%d\t%s\t\t%d\t\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
 //     }
 //     printf("Save Successfully!\n");
 //     fclose(fp);
 // }
 
-// void ReadFile(Acount acount[],int n,FILE* fp)
+// int ReadFile(Acount acount[],FILE* fp)
 // {
-//     int i;
-//     for(i=0;i<n;i++)
+//     char temp[4][N]={0};
+//     int i,t;
+//     for(i=0;i<4;i++)
 //     {
-//         fscanf(fp,"%d %s %d %d",&acount[i].ID,acount[i].Username,&acount[i].income,&acount[i].expense);
+//         fscanf(fp,"%s",&temp[i][N]);
 //     }
+//     for(i=0;!feof(fp);i++)
+//     {
+//         fscanf(fp,"%d",&acount[i].ID);
+//         fscanf(fp,"%s",acount[i].Username);
+//         fscanf(fp,"%d",&acount[i].income);
+//         fscanf(fp,"%d",&acount[i].expense);
+//     }
+//     t=i-1;
 //     printf("ID\tUserName\tIncome\tExpenses\t\n");
-//     for(i=0;i<n;i++)
+//     for(i=0;i<t;i++)
 //     {
 //         printf("%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
 //     }
 //     fclose(fp);
+//     return i;
 // }
