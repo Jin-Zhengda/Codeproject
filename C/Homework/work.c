@@ -1791,12 +1791,16 @@
 // void AverageRecord(Acount acount[],int n,float* averincome,float* averexpense);
 // void LargerRecord(Acount acount[],int n,float averexpense);
 // void OutputRecord(Acount acount[],int n);
+// void WrintFile(Acount acount[],int n);
+// void ReadFile(Acount acount[],int n,FILE* fp);
 
 // int main(void)
 // {
 //     Acount acount[N]={0};
+//     char str[N];
 //     float averincome;
 //     float averexpense;
+//     FILE* fp;
 //     int flag,n;
 //     do
 //     {
@@ -1806,6 +1810,8 @@
 //         printf("4.Calculate and list per capita income and expenses\n");
 //         printf("5.List records which have more expenses than per capita expenses\n");
 //         printf("6.List all records\n");
+//         printf("7.Write to file\n");
+//         printf("8.Read from file\n");
 //         printf("0.Exit\n");
 //         printf("Please enter your choice:");
 //         scanf("%d",&flag);
@@ -1853,6 +1859,24 @@
 //                 }
 //                 OutputRecord(acount,n);
 //                 break;
+//             case 7:
+//                 if(!EmptyRecord(acount))
+//                 {
+//                     break;
+//                 }
+//                 WrintFile(acount,n);
+//                 break;
+//             case 8:
+//                 printf("Please input the file name:");
+//                 scanf("%s",str);
+//                 fp=fopen(str,"r");
+//                 if(fp==NULL)
+//                 {
+//                     printf("Cannot find this file!\n");
+//                     break;
+//                 }
+//                 ReadFile(acount,n,fp);
+//                 break;
 //             default:
 //                 printf("Input Error!\n");
 //                 break;
@@ -1867,7 +1891,7 @@
 //     int flag=1;
 //     if(acount[0].ID==0)
 //     {
-//         printf("There is no data yet. Please choose 1 to input the data first.\n");
+//         printf("There is no data yet. Please choose 1 or 8 to input the data first.\n");
 //         flag=0;
 //     }
 //     return flag;
@@ -2003,4 +2027,36 @@
 //     {
 //         printf("%d\t%s\t\t%d\t%d\t\n",pstr[i]->ID,pstr[i]->Username,pstr[i]->income,pstr[i]->expense);
 //     }
+// }
+
+// void WrintFile(Acount acount[],int n)
+// {
+//     char str[N];
+//     FILE* fp;
+//     int i;
+//     printf("Please input the file name:");
+//     scanf("%s",str);
+//     fp=fopen(str,"w");
+//     fprintf(fp,"ID\tUserName\tIncome\tExpenses\t\n");
+//     for(i=0;i<n;i++)
+//     {
+//         fprintf(fp,"%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+//     }
+//     printf("Save Successfully!\n");
+//     fclose(fp);
+// }
+
+// void ReadFile(Acount acount[],int n,FILE* fp)
+// {
+//     int i;
+//     for(i=0;i<n;i++)
+//     {
+//         fscanf(fp,"%d %s %d %d",&acount[i].ID,acount[i].Username,&acount[i].income,&acount[i].expense);
+//     }
+//     printf("ID\tUserName\tIncome\tExpenses\t\n");
+//     for(i=0;i<n;i++)
+//     {
+//         printf("%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+//     }
+//     fclose(fp);
 // }

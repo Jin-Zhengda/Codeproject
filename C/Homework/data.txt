@@ -1,0 +1,6 @@
+ID	UserName	Income	Expenses	
+10001	Cindy		6000	1500	
+20011	Eric		20000	10000	
+10023	Amy		10000	3000	
+20012	Grace		15000	0	
+30004	Ada		8000	14000	
