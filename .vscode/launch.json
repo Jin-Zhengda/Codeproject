@@ -16,8 +16,8 @@
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
       "request": "launch",
       "stopAtEntry": false,
-      "type": "cppdbg"
+      "type": "cppdbg",
     }
   ],
-  "version": "0.2.0"
+"version": "0.2.0"
 }
