@@ -76,7 +76,7 @@ def div_by_primes_under(n):
     i = 2
     while i <= n:
         if not checker(i):
-            checker = (lambda f, i: lambda x: )(checker, i)
+            checker = (lambda f, i: lambda x: x % i == 0 or f(x))(checker, i)
         i = i + 1 
     return checker
 
@@ -97,11 +97,11 @@ def div_by_primes_under_no_lambda(n):
     i = 2
     while i <= n:
         if not checker(i):
-            def outer():
-                def inner():
-                    return 
-                return 
-            checker = 
+            def outer(f, i):
+                def inner(x):
+                    return x % i == 0 or f(x)
+                return inner
+            checker = outer(checker, i)
         i = i + 1
     return checker
 
@@ -138,15 +138,6 @@ def three_memory(n):
 
 def rect(area, perimeter):
     """
-    Fall 2018 Midterm 1, Question 4. Implement rect, which takes two positive
-    integer arguments, perimeter and area. It returns the integer length of the longest
-    side of a rectangle with integer side lengths ` and h which has the given perimeter
-    and area. If no such rectangle exists, it returns False.
-    The perimeter of a rectangle with sides ` and h is 2` + 2h. The area is ` ¡¤ h.
-    Hint: The built-in function round takes a number as its argument and returns the
-    nearest integer. For example, round(2.0) evaluates to 2, and round(2.5) evaluates
-    to 3.
-    Return the longest side of a rectangle with area and perimeter that has integer sides.
     >>> rect(10, 14) # A 2 x 5 rectangle
     5
     >>> rect(5, 12) # A 1 x 5 rectangle
@@ -161,9 +152,9 @@ def rect(area, perimeter):
     20
     """
     side = 1
-    while side * side     area:
-    other = round(   )
-    if    :
-     
-    side = side + 1
+    while side * side <= area:
+        other = round(area/side)
+        if  2 * (side + other) == perimeter:
+            return other
+        side = side + 1
     return False
