@@ -6,26 +6,66 @@
     <style>
         h1{
             color: aqua;
-            font-size: 35px;
+            
         }
 
         #red{
             color: red;
-            font-size: large;
+            
         }
 
         .blue{
             color: blue;
-            font-size: larger;
+            
         }
 
         p.green{
             color: green;
-            font-size: x-large;
+            
         }
 
         h2,span{
             color: tomato;
+        }
+
+        ul > li:first-of-type{
+            color:orange;
+        }
+
+        p[title]{
+            font-size: large;
+        }
+
+
+        a:visited{
+            color:blue;
+        }
+
+        a:hover{
+            color:yellowgreen;
+            font-size: large;
+        }
+
+        a:active{
+            color:goldenrod;
+        }
+
+        .en::first-letter{
+            font-size:30px;
+        }
+
+        .en::first-line{
+            background-color: aqua;
+        }
+
+        .en::selection{
+            background-color: yellow;
+        }
+
+
+
+        .en::after{
+            content: "'";
         }
 
     </style>
@@ -39,24 +79,22 @@
     <span>默认行内元素</span>
 
     <ul>
-        <li style="color: red; font-size: 20px">结构</li>
+        <li>结构</li>
         <li>表现</li>
         <li>行为</li>
     </ul>
     <br>
     <a href="https://www.baidu.com" target="_blank">百度</a>
-    <br>
-    <br>
+    <br><br>
     <a href="01.html">内部跳转</a>
-    <br>
-    <br>
-    <br>
-    <div class="green">回乡偶书</div>
-    <div>贺知章</div>
-    <p id="red">少小离家老大回</p>
-    <p class="blue">乡音无改鬓毛衰</p>
+    <br><br><br>
+    <div>回乡偶书</div>
+    <p id="red" title="a">少小离家老大回</p>
+    <p class="blue" title="b">乡音无改鬓毛衰</p>
     <p class="blue">儿童相见不相识</p>
     <p class="green">笑问客从何处来</p>
+    <br><br>
+    <p class="en">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque impedit, commodi enim perspiciatis mollitia amet consequatur, inventore quo veritatis voluptatem officiis voluptate, minima quidem quas exercitationem dolore vero omnis molestiae.</p>
     <!--
     <iframe src="https://www.bilibili.com" width="800" height="600" frameborder="0"></iframe>
     -->
