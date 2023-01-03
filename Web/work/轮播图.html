@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        .outer{
+            width: 590px;
+            height: 332px;
+            overflow: hidden;
+        }
+        .bottom{
+            /* background-color: aqua; */
+            position: absolute;
+            left: 30px;
+            top: 300px;
+        }
+        a{
+            text-decoration: none;
+            color: grey;
+            font-size: 25px;
+        }
+        .outer a:hover{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <img src="./1.png" id="1">
+        <img src="./2.png" id="2">
+        <img src="./3.png" id="3">
+        <div class="bottom">  
+            <a id="01" href="#1">*</a>  
+            <a id="02" href="#2">*</a>  
+            <a id="03" href="#3">*</a>  
+        </div>
+    </div>
+</body>
+</html>
