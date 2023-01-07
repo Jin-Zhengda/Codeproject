@@ -31,16 +31,34 @@ nav a:hover{
     margin: 0 3px 0 130px;
 }
 
-#icon{
+#icon1{
     width: 110px;
-    margin: 0 0 0 28px;
+    margin: 0 0 0 26px;
     line-height: 40px;
     background-color: rgba(72, 71, 71, 0.8);
+    position: relative;
 }
 
-#icon:hover{
+#icon1:hover{
     background-color: white;
     color: orange;
+}
+
+#icon1 > #one{
+    display: inline-block;
+    position: absolute;
+    top: 14.5px;
+    left: 16.5px;
+}
+
+#icon1 > #two{
+    display: inline-block;
+    width: 62px;
+    margin: 0 auto 0 35px;
+}
+
+.outer{
+    width: 1690.7px;
 }
 
 .header{
@@ -53,7 +71,7 @@ nav a:hover{
     float: left;
 }
 
-.picture{
+.header > .picture{
     margin: 27.5px 179px 27.5px 0;
     border-radius: 33%;
     overflow: hidden;
@@ -90,13 +108,14 @@ form > input{
     width: 242px;
     height: 48px;
     font-size: 13px;
-    margin: 24px -2px 24px 0;
+    margin: 24px -4px 24px 0;
     border: 1px rgb(224, 224, 224) solid;
     padding: 0;
     border-right: 0;
+    vertical-align: top;
 }
 
-form div{
+form a{
     color: black;
     display: inline-block;
     font-size: 13px;
@@ -110,16 +129,135 @@ form div{
     text-decoration: none;
 }
 
-form div:hover{
+form a:hover{
     color: white;
     background-color: rgb(255, 103, 0);
 }
 
+form div::before{
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+form div{
+    margin: auto 19px;
+}
+
 main{
-    height: 690px;
+    width: 1690.7px;
+    height: 460px;
+}
+
+main > div{
+    margin: 0 auto;
+    width: 1226px;
+    height: 460px;
+    position: relative;
+}
+
+main > div > a {
+    display: block;
+    width: 1226px;
+    height: 460px;
+    position: absolute;
+}
+
+.circle{
+    width: 80px;
+    height: 6px;
+    position: absolute;
+    z-index: 1;
+    right: 34px;
+    top: 429px;
+    background-color: ragb(255, 255, 255, 0);
+}
+
+.circle > div{
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+    background-color: rgb(124, 125, 126);
+    border: 2px rgb(161, 162, 161) solid;
+    float: left;
+    border-radius: 50%;
+}
+
+.circle > div:hover{
+    background-color: white;
+    
+}
+
+.word{
+    width: 234px;
+    height: 460px;
+    font-size: 14px;
+    background-color: rgb(165, 163, 163);
+    position: absolute;
+    top: 0;
+}
+
+main a{
+    display: block;
+    width: 234px;
+    height: 42px;
+    text-decoration: none;
+    color: white;
+    line-height: 42px;
+    position: relative;
+}
+
+#first{
+    margin: 20px 0 0;
+}
+
+main a > span{
+    margin: 0 0 0 31px;
+}
+
+.word > a:hover{
+    background-color: rgb(255, 103, 0);
+}
+
+.icon2::after{
+    content: '\f105';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.icon2{
+    position: absolute;
+    right: 24px;
 }
 
 .footer{
-    height: 255px;
+    height: 210px;
+    width: 1690.7px;
 }
 
+.footer > div{
+    width: 1226px;
+    height: 170px;
+    margin: 20px auto;
+}
+
+.footer > div > div{
+    width: 234px;
+    height: 170px;
+    background-color: rgb(95, 87, 80);
+    float: left;
+}
+
+.footer > div > a{
+    display: block;
+    float: left;
+    margin: 0 7px;
+}
+
+#last{
+    margin: 0 0 0 16px;
+}
+
+.footer > div > a:hover{
+    box-shadow: 8px 8px 11px rgb(243, 243, 243);
+}
