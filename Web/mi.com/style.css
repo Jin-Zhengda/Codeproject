@@ -1,10 +1,15 @@
+body{
+    width: 1690.7px;
+    min-width: 1226px;
+}
+
 nav{
     height: 40px;
-    width: 1690.7px;
+    width: 100%;
     background-color: rgb(51, 51, 51);
     color: rgb(59, 64, 66);
     font-size: 11px;
-    
+    position: relative;
 }
 
 nav > div{
@@ -42,6 +47,7 @@ nav a:hover{
 #icon1:hover{
     background-color: white;
     color: orange;
+    border-bottom: none;
 }
 
 #icon1 > #one{
@@ -57,8 +63,72 @@ nav a:hover{
     margin: 0 auto 0 35px;
 }
 
+#icon1 > #box2{
+    position: absolute;
+    width: 300px;
+    height: 0;
+    overflow: hidden;
+    line-height: 100px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+    left: -189px;
+    z-index: 9999;
+    transition: height 0.3s;
+    
+}
+
+#icon1:hover #box2{
+    height: 100px;
+}
+
+#box1{
+    position: relative;
+}
+
+#box1 > #qrcode{
+    width: 124px;
+    height: 0;
+    overflow: hidden;
+    line-height: 1;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 40px;
+    left: -40px;
+    z-index: 9999;
+    transition: height 0.3s;
+}
+
+#box1 > #traingle{
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: 24px;
+    left: 16px;
+}
+
+#qrcode > img{
+    margin: 17px;
+    margin-bottom: 14px;
+}
+
+#box1:hover #qrcode{
+    height: 148px;
+}
+
+#box1:hover #traingle{
+    border: 8px transparent solid;
+    border-bottom-color: white;
+}
+
 .outer{
-    width: 1690.7px;
+    width: 100%;
+    position: relative;
 }
 
 .header{
@@ -72,9 +142,18 @@ nav a:hover{
 }
 
 .header > .picture{
-    margin: 27.5px 179px 27.5px 0;
-    border-radius: 33%;
+    height: 55px;
+    width: 55px;
+    margin: 22.5px 179px 22.5px 0;
+    border-radius: 35%;
     overflow: hidden;
+}
+
+.picture img:active{
+    width: 50px;
+    height: 50px;
+    margin: 2.5px;
+    border-radius: 35%;
 }
 
 .menu{
@@ -85,7 +164,7 @@ nav a:hover{
 
 .menu > a{
     color: black;
-    font-size: 14px;
+    font-size: 15px;
     display: inline-block;
     text-decoration: none;
     height: 100px;
@@ -94,7 +173,27 @@ nav a:hover{
 }
 
 .menu > a:hover{
-    color: rgb(255, 197, 107);
+    color: rgb(255, 103, 0);
+}
+
+.menu > #long-box{
+    position: absolute;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background-color: white;
+    top: 100px;
+    left: 0;
+    z-index: 9999;
+    transition: height 0.3s;
+}
+
+.box3:hover ~ #long-box,
+#long-box:hover{
+    display: block;
+    height: 230px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .2);
+    border-top: 1px solid rgb(224, 224, 224);
 }
 
 form{
@@ -105,14 +204,31 @@ form{
 }
 
 form > input{
-    width: 242px;
+    width: 222px;
     height: 48px;
     font-size: 13px;
     margin: 24px -4px 24px 0;
     border: 1px rgb(224, 224, 224) solid;
-    padding: 0;
+    padding: 0 10px;
     border-right: 0;
     vertical-align: top;
+    color: rgb(117, 117, 117);
+    outline: none;
+}
+
+form div::before{
+    content: '\f002';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+form div{
+    margin: auto 19px;
+}
+
+form > input:focus,
+form > input:focus + a{
+    border-color: #FF6700;
 }
 
 form a{
@@ -134,18 +250,8 @@ form a:hover{
     background-color: rgb(255, 103, 0);
 }
 
-form div::before{
-    content: '\f002';
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 900;
-}
-
-form div{
-    margin: auto 19px;
-}
-
 main{
-    width: 1690.7px;
+    width: 100%;
     height: 460px;
 }
 
@@ -219,6 +325,27 @@ main a > span{
     background-color: rgb(255, 103, 0);
 }
 
+#box4{
+    position: absolute;
+    width: 992px;
+    height: 0;
+    overflow: hidden;
+    background-color: white;
+    
+    top: 0;
+    left: 234px;
+    z-index: 9999;
+}
+
+.word > a:hover ~ #box4,
+#box4:hover
+{
+    height: 458px;
+    border: 1px solid rgb(224, 224, 224);
+    border-left: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+}
+
 .icon2::after{
     content: '\f105';
     font-family: 'Font Awesome 5 Free';
@@ -232,7 +359,7 @@ main a > span{
 
 .footer{
     height: 210px;
-    width: 1690.7px;
+    width: 100%;
 }
 
 .footer > div{
@@ -241,11 +368,33 @@ main a > span{
     margin: 20px auto;
 }
 
-.footer > div > div{
+.footer > div > ul{
     width: 234px;
     height: 170px;
     background-color: rgb(95, 87, 80);
     float: left;
+}
+
+.footer ul > li{
+    width: 76px;
+    height: 83px;
+    border-color: rgb(102, 94, 87);
+    border-style: solid;
+    border-width: 1px 0.5px;
+    float: left;
+    margin: 0 auto;
+    line-height: 83px;
+    text-align: center;
+}
+
+.footer ul > li > a{
+    color: rgb(199, 196, 194);
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.footer ul > li > a:hover{
+    color: white;
 }
 
 .footer > div > a{
@@ -259,5 +408,5 @@ main a > span{
 }
 
 .footer > div > a:hover{
-    box-shadow: 8px 8px 11px rgb(243, 243, 243);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, .1);
 }
