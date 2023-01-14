@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let name = prompt("Who's there?",'');
+        // if(name === "Admin"){
+
+        //     let passWord = prompt("Password?",'');
+
+        //     if(passWord === "TheMaster"){
+        //         alert("Welcome!");
+        //     }else if(passWord === '' || passWord === null){
+        //         alert("Canceled.");
+        //     }else{
+        //         alert("Wrong passwprd!");
+        //     }
+        // }else if(name === '' || name === null){
+        //     alert("Canceled.");
+        // }else{
+        //     alert("I don't know you.")
+        // }
+
+        let calculator = {
+            a: 0,
+            b: 0,
+        };
+        calculator.read = function () {
+            this.a = +prompt("please input a.", '0');
+            this.b = +prompt("please input b.", '0');
+        }
+        calculator.sum = function () {
+            return this.a + this.b;
+        }
+        calculator.mul = function () {
+            return this.a * this.b;
+        }
+
+        calculator.read();
+        alert(calculator.sum());
+        alert(calculator.mul());
+    </script>
+</body>
+
+</html>

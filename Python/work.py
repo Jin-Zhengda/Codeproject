@@ -45,7 +45,8 @@ def best_k_segmenter(k, score):
     >>> best_k_segmenter(3, lambda x: (x // 10) % 10)(192837465)
     192
     """
-    partitioner = lambda x: (x // 10 ** k, x % 10 ** k)
+    partitioner = lambda x: (x // 10**k, x % 10**k)
+
     def best_getter(n):
         assert n > 0
         best_seg = None
@@ -54,6 +55,7 @@ def best_k_segmenter(k, score):
             if score(seg) > score(best_seg):
                 best_seg = seg
         return best_seg
+
     return best_getter
 
 
@@ -77,7 +79,7 @@ def div_by_primes_under(n):
     while i <= n:
         if not checker(i):
             checker = (lambda f, i: lambda x: x % i == 0 or f(x))(checker, i)
-        i = i + 1 
+        i = i + 1
     return checker
 
 
@@ -92,15 +94,21 @@ def div_by_primes_under_no_lambda(n):
     >>> div_by_primes_under_no_lambda(5)(1)
     False
     """
+
     def checker(x):
         return False
+
     i = 2
     while i <= n:
         if not checker(i):
+
             def outer(f, i):
+
                 def inner(x):
                     return x % i == 0 or f(x)
+
                 return inner
+
             checker = outer(checker, i)
         i = i + 1
     return checker
@@ -124,16 +132,19 @@ def three_memory(n):
     >>> f = f('third') # 'third' was not input three calls ago
     Not found
     """
+
     def f(x, y, z):
+
         def g(i):
             if i == x:
                 print('Found')
             else:
                 print('Not Found')
             return f(y, z, i)
-        return g
-    return f(None, None, n)
 
+        return g
+
+    return f(None, None, n)
 
 
 def rect(area, perimeter):
@@ -153,8 +164,8 @@ def rect(area, perimeter):
     """
     side = 1
     while side * side <= area:
-        other = round(area/side)
-        if  2 * (side + other) == perimeter:
+        other = round(area / side)
+        if 2 * (side + other) == perimeter:
             return other
         side = side + 1
     return False
@@ -169,7 +180,7 @@ def keep_ints(cond, n):
     2
     4
     """
-    for i in range(1, n+1):
+    for i in range(1, n + 1):
         if cond(i):
             print(i)
 
@@ -183,10 +194,12 @@ def make_keeper(n):
         2
         4
     """
+
     def inner(cond):
-        for i in range(1, n+1):
-            if(cond):
+        for i in range(1, n + 1):
+            if (cond):
                 print(i)
+
     return inner
 
 
@@ -204,9 +217,11 @@ def print_delayed(x):
     5
     <function delay_print>
     """
+
     def delay_print(y):
         print(x)
         return print_delayed(y)
+
     return delay_print
 
 
@@ -226,12 +241,14 @@ def print_n(n):
     done
     <function inner_print>
     """
+
     def inner_print(x):
         if n <= 0:
             print("done")
         else:
             print(x)
-        return print_n(n-1)
+        return print_n(n - 1)
+
     return inner_print
 
 
@@ -253,12 +270,14 @@ def match_k(k):
     >>> match_k(2)(123123)
     False
     """
-    def checker(x): 
-        while x >= 10 ** k:
-            if x % 10 != (x // 10 ** k) % 10:
+
+    def checker(x):
+        while x >= 10**k:
+            if x % 10 != (x // 10**k) % 10:
                 return False
             x = x // 10
         return True
+
     return checker
 
 
@@ -283,7 +302,9 @@ def chain_function():
     4 3
     """
     cnt = 0
+
     def g(y):
+
         def h(n):
             if (y + 1) == n:
                 return g(n)
@@ -292,7 +313,9 @@ def chain_function():
                 cnt = cnt + 1
                 print(y + 1, cnt)
                 return g(n)
+
         return h
+
     return g
 
 
@@ -318,4 +341,3 @@ def cs61nay(combiner, n):
         return lambda x: x
     else:
         return lambda x: lambda y: cs61nay(combiner, n - 1)(combiner(x, y))
-
