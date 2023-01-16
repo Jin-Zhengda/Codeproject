@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<script>
+    //条件语句
+    // let name = prompt("Who's there?", '');
+    // if (name === "Admin") {
+    //
+    //     let passWord = prompt("Password?", '');
+    //
+    //     if (passWord === "TheMaster") {
+    //         alert("Welcome!");
+    //     } else if (passWord === '' || passWord === null) {
+    //         alert("Canceled.");
+    //     } else {
+    //         alert("Wrong password!");
+    //     }
+    // } else if (name === '' || name === null) {
+    //     alert("Canceled.");
+    // } else {
+    //     alert("I don't know you.")
+    // }
+
+    //对象方法的创建
+    // let calculator = {
+    //     a: 0,
+    //     b: 0,
+    // };
+    // calculator.read = function(){
+    //     this.a = +prompt("please input a.", '0');
+    //     this.b = +prompt("please input b.", '0');
+    // }
+    // calculator.sum = function(){
+    //     return this.a + this.b;
+    // }
+    // calculator.mul = function(){
+    //     return this.a * this.b;
+    // }
+    //
+    // calculator.read();
+    // alert( calculator.sum());
+    // alert( calculator.mul());
+
+    //构造器及“new”操作符
+    // function Calculator() {
+    //     this.read = function () {
+    //         this.a = +prompt("please input a.", '0');
+    //         this.b = +prompt("please input b.", '0');
+    //     }
+    //     this.sum = function () {
+    //         return this.a + this.b;
+    //     }
+    //     this.mul = function () {
+    //         return this.a * this.b;
+    //     }
+    // }
+    //
+    // let calculator = new Calculator();
+    // calculator.read();
+    //
+    // alert("Sum=" + calculator.sum());
+    // alert("Mul=" + calculator.mul());
+    //
+    // function Accumulator(startingValue) {
+    //     this.value = startingValue;
+    //     this.read = function () {
+    //         this.value += +prompt("Input?", '0');
+    //     }
+    // }
+    //
+    // let accumulator = new Accumulator(1);
+    //
+    // accumulator.read();
+    // accumulator.read();
+    //
+    // alert(accumulator.value);
+
+    //重复直到读取到数字
+    // function readNumber() {
+    //
+    //     let num;
+    //     do {
+    //         num = prompt("Input?", '');
+    //     } while (!isFinite(num));
+    //
+    //     if (num === null || num === '') {
+    //         return null;
+    //     } else {
+    //         return +num;
+    //     }
+    // }
+    //
+    // alert(readNumber());
+
+    //生成min~max的整数随机数，各个数字出现概率相同
+    // function randomInt(min, max) {
+    //     // here rand is from min to (max+1)
+    //     let num;
+    //     num = min + Math.random() * (max - min + 1);
+    //     return Math.floor(num);
+    // }
+    // alert(randomInt(0, 9));
+
+    //截断文本函数
+    // function truncate(str, maxlength) {
+    //     if (str.length > maxlength) {
+    //         return str.slice(0, maxlength - 1) + '...';
+    //     } else {
+    //         return str;
+    //     }
+    // }
+
+    //调用 arr[2] 函数也就是调用对象函数。自然地，它接收 this 引用的对象 arr 然后输出该数组
+    // let arr = ["a", "b"];
+    //
+    // arr.push(function () {
+    //     alert(this);
+    // })
+    //
+    // alert(arr[2]());
+
+    //数组求和函数
+    // function sumInput() {
+    //     let numbers = [];
+    //     let value;
+    //     let sum = 0;
+    //     do {
+    //         value = prompt("Input", '');
+    //         if (value !== ' ' && value !== null && isFinite(value)) {
+    //             numbers.push(+value);
+    //         } else {
+    //             break;
+    //         }
+    //     } while (true);
+    //
+    //     for (let number of numbers) {
+    //         sum += number;
+    //     }
+    //     return sum;
+    // }
+    //
+    // alert(sumInput());
+
+    //字符串拆分转换
+    // function camelize(str) {
+    //     let array = str.split('-');
+    //     for (let i = 0; i < array.length; i++) {
+    //         array[i] = array[i][0].toUpperCase() + array[i].slice(1);
+    //     }
+    //     return array.join('');
+    // }
+    //
+    // alert(camelize("my-short-string"));
+
+    //范围过滤
+    // function filterRange(arr, a, b) {
+    //     return arr.filter(item => item >= a && item <= b);
+    // }
+    //
+    // let arr = [5, 3, 8, 1];
+    //
+    // let filtered = filterRange(arr, 1, 4);
+    //
+    // alert(filtered); // 3,1（匹配值）
+    //
+    // alert(arr); // 5,3,8,1（未修改）
+
+    //原位范围过滤
+    // function filterRangeInPlace(arr, a, b) {
+    //     return arr.forEach(item => ((item < a || item > b) ? arr.splice(arr.indexOf(item, 0), 1) : item));
+    // }
+    //
+    // let arr = [5, 3, 8, 1];
+    //
+    // filterRangeInPlace(arr, 1, 4); // 删除了范围在 1 到 4 之外的所有值
+    //
+    // alert(arr); // [3, 1]
+
+    //可扩展的calculator对象
+    // function Calculator() {
+    //     this.operator = {
+    //         "+": (a, b) => (a + b),
+    //         "-": (a, b) => (a - b),
+    //     }
+    //     this.calculate = function (str) {
+    //         let arr = str.split(' ');
+    //         return this.operator[arr[1]](+arr[0], +arr[2]);
+    //     }
+    //     this.addMethod = function (name, func) {
+    //         this.operator[name] = func;
+    //     }
+    // }
+    //
+    // let powerCalc = new Calculator;
+    // powerCalc.addMethod("*", (a, b) => a * b);
+    // powerCalc.addMethod("/", (a, b) => a / b);
+    // powerCalc.addMethod("**", (a, b) => a ** b);
+    //
+    // let result = powerCalc.calculate("2 ** 3");
+    // alert(result); // 8
+
+    //累加器
+    // function getAverageAge(users) {
+    //     return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+    // }
+    //
+    // let john = {name: "John", age: 25};
+    // let pete = {name: "Pete", age: 30};
+    // let mary = {name: "Mary", age: 29};
+    //
+    // let arr = [john, pete, mary];
+    //
+    // alert(getAverageAge(arr)); // 28
+
+    //数组去重
+    // function unique(arr) {
+    //     let result = [];
+    //     for (let str of arr) {
+    //         if (!result.includes(str)) {
+    //             result.push(str);
+    //         }
+    //     }
+    //     return result;
+    // }
+    //
+    // let strings = ["Hare", "Krishna", "Hare", "Krishna",
+    //     "Krishna", "Krishna", "Hare", "Hare", ":-O"
+    // ];
+    //
+    // alert(unique(strings)); // Hare, Krishna, :-O
+
+    //从数组创建键（值）对象
+    // function groupById(arr) {
+    //     return arr.reduce((obj, item) => {
+    //         obj[item.id] = item;
+    //         return obj;
+    //     }, {})
+    // }
+    //
+    // let users = [
+    //     {id: 'john', name: "John Smith", age: 20},
+    //     {id: 'ann', name: "Ann Smith", age: 24},
+    //     {id: 'pete', name: "Pete Peterson", age: 31},
+    // ];
+    //
+    // let usersById = groupById(users);
+    // 调用函数后，我们应该得到：
+    // usersById = {
+    //   john: {id: 'john', name: "John Smith", age: 20},
+    //   ann: {id: 'ann', name: "Ann Smith", age: 24},
+    //   pete: {id: 'pete', name: "Pete Peterson", age: 31},
+    // }
+
+
+</script>
+</body>
+
+</html>
