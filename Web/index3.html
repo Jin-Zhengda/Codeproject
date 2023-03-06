@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+</head>
+<style>
+    body {
+        height: 2000px;
+    }
+
+    #wrapper {
+        display: flex;
+        cursor: pointer;
+    }
+
+    #triangle {
+        height: 0;
+        width: 0;
+        border: 10px transparent solid;
+        border-left-color: rgb(0, 128, 0);
+    }
+
+    #nav {
+        height: 20px;
+        font-size: 15px;
+    }
+
+    #list {
+        overflow: hidden;
+        transition: all 0.5s ease-out;
+    }
+
+    .closeList {
+        height: 0;
+    }
+
+    .openList {
+        height: 62px;
+    }
+
+    .openTriangle {
+        rotate: 90deg;
+    }
+
+    .pane {
+        background-color: rgb(237, 245, 225);
+        border: rgb(196, 223, 155) 2px solid;
+        height: 200px;
+        width: 500px;
+        position: relative;
+    }
+
+    .remove-button {
+        position: absolute;
+        left: 460px;
+        top: 10px;
+        color: red;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    #tree span {
+        cursor: pointer;
+    }
+
+    #tree span:hover {
+        font-weight: bold;
+    }
+
+    .tooltip {
+        position: fixed;
+        padding: 10px 20px;
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font: italic 14px/1.3 sans-serif;
+        color: #333;
+        background: #fff;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+
+    #contents {
+        padding: 5px;
+        border: 1px green solid;
+    }
+
+    .selected {
+        background: #0f0;
+    }
+
+    #ul li {
+        cursor: pointer;
+    }
+
+    #largeImg {
+        padding: 5px;
+        border: 1px solid rgb(231, 229, 227);
+    }
+
+    #thumbs {
+        display: flex;
+        padding: 0;
+    }
+
+    #thumbs li {
+        padding: 5px;
+        border: 1px solid rgb(231, 229, 227);
+    }
+
+    #thumbs li::marker {
+        content: '';
+    }
+</style>
+<body>
+<div id="wrapper">
+    <div id="triangle"></div>
+    <div id="nav">Sweeties (click me)!</div>
+</div>
+<ul id="list" class="closeList">
+    <li>Cake</li>
+    <li>Donut</li>
+    <li>Honey</li>
+</ul>
+
+
+<div id="container">
+    <div class="pane">
+        <button class="remove-button" type="button">[x]</button>
+        <h3>Horse</h3>
+        <p>The horse is one of two extant subspecies of Equus ferus. It is an odd-toed ungulate mammal
+            belonging to the taxonomic family Equidae. The horse has evolved over the past 45 to 55 million
+            years from a small multi-toed creature, Eohippus, into the large, single-toed animal of today.
+        </p>
+    </div>
+    <div class="pane">
+        <button class="remove-button" type="button">[x]</button>
+        <h3>Donkey</h3>
+        <p>The donkey or ass (Equus africanus asinus) is a domesticated member of the horse family, Equidae.
+            The wild ancestor of the donkey is the African wild ass, E. africanus. The donkey has been used as
+            a working animal for at least 5000 years.
+        </p>
+    </div>
+    <div class="pane">
+        <button class="remove-button" type="button">[x]</button>
+        <h3>Cat</h3>
+        <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are
+            often called house cats when kept as indoor pets or simply cats when there is no need to distinguish
+            them from other felids and felines. Cats are often valued by humans for companionship and for their
+            ability to hunt vermin.
+        </p>
+    </div>
+</div>
+
+<ul class="tree" id="tree">
+    <li><span>Animals</span>
+        <ul>
+            <li><span>Mammals</span>
+                <ul>
+                    <li><span>Cows</span></li>
+                    <li><span>Donkeys</span></li>
+                    <li><span>Dogs</span></li>
+                    <li><span>Tigers</span></li>
+                </ul>
+            </li>
+            <li><span>Other</span>
+                <ul>
+                    <li><span>Snakes</span></li>
+                    <li><span>Birds</span></li>
+                    <li><span>Lizards</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><span>Fishes</span>
+        <ul>
+            <li><span>Aquarium</span>
+                <ul>
+                    <li><span>Guppy</span></li>
+                    <li><span>Angelfish</span></li>
+                </ul>
+            </li>
+            <li><span>Sea</span>
+                <ul>
+                    <li><span>Sea trout</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<div id="tooltip">
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+    <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+
+    <button data-tooltip="the tooltip is longer than the element">Short button</button>
+    <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+    <p>Scroll the page to make buttons appear on the top, check if the tooltips show up correctly.</p>
+</div>
+
+<fieldset id="contents">
+    <legend>#contents</legend>
+    <p>
+        How about to read <a href="https://wikipedia.org">Wikipedia</a> or visit <a href="https://w3.org"><i>W3.org</i></a>
+        and learn about modern standards?
+    </p>
+</fieldset>
+
+Click on a list item to select it.
+<br>
+
+<ul id="ul">
+    <li>Christopher Robin</li>
+    <li>Winnie-the-Pooh</li>
+    <li>Trigger</li>
+    <li>Kana</li>
+    <li>Rabbit. Just rabbit.</li>
+</ul>
+
+<p><img id="largeImg" src="https://en.js.cx/gallery/img1-lg.jpg" alt="Large image"></p>
+
+<ul id="thumbs">
+    <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
+    <li>
+        <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img
+                src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
+    </li>
+    <li>
+        <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img
+                src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
+    </li>
+    <li>
+        <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img
+                src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
+    </li>
+    <li>
+        <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img
+                src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
+    </li>
+    <li>
+        <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img
+                src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
+    </li>
+</ul>
+
+<script>
+    //下拉菜单
+    let wrapper = document.getElementById('wrapper');
+
+    wrapper.onclick = function slidingList() {
+        let list = document.getElementById('list');
+        let triangle = document.getElementById('triangle');
+        list.classList.toggle('closeList');
+        list.classList.toggle('openList');
+        triangle.classList.toggle('openTriangle');
+    }
+
+    //关闭窗口
+    let container = document.getElementById('container');
+
+    container.addEventListener('click', removePane)
+
+    function removePane(event) {
+        if (event.target.className === "remove-button") {
+            event.target.closest('.pane').remove();
+        }
+    }
+
+    //收起子树
+    let tree = document.getElementById('tree');
+
+    function retractTree(event) {
+        let li = event.target.closest('li');
+        if (li.children) {
+            for (let child of li.children) {
+                for (let grandchild of child.children) {
+                    grandchild.hidden = !grandchild.hidden;
+                }
+            }
+        }
+    }
+
+    tree.addEventListener('click', retractTree);
+
+    //提示工具
+    let toolDiv = document.getElementById('tooltip');
+    let div = null;
+
+    function tipsAppear(event) {
+        if (!event.target.dataset.tooltip) return;
+
+        div = document.createElement('div');
+        let coords = event.target.getBoundingClientRect();
+
+        div.innerHTML = event.target.dataset.tooltip;
+        div.classList.add('tooltip');
+        toolDiv.append(div);
+
+        let left = coords.left + event.target.offsetWidth / 2 - div.offsetWidth / 2;
+        let fixedTop = 5;
+        let top = coords.top - div.offsetHeight - fixedTop;
+
+        if (left > 0) {
+            div.style.left = left + 'px';
+        } else {
+            div.style.left = coords.left + 'px';
+        }
+
+        if (top > 0) {
+            div.style.top = top + 'px';
+        } else {
+            div.style.top = coords.top + event.target.offsetHeight + fixedTop + 'px';
+        }
+    }
+
+    function tipsDisappear(event) {
+        if (!event.target.dataset.tooltip) return;
+
+        if (!div) return;
+
+        div.remove();
+        div = null;
+    }
+
+    document.addEventListener('mouseover', tipsAppear);
+    document.addEventListener('mouseout', tipsDisappear);
+
+    //询问是否跳转
+    let contents = document.getElementById('contents');
+
+    contents.onclick = function catchLink(event) {
+        if (!event.target.closest('a')) return;
+
+        let option = confirm('Leave for' + ' ' + event.target.closest('a').href + '?');
+
+        if (option) {
+            window.location.href = event.target.closest('a').href;
+        } else {
+            return false;
+        }
+    }
+
+    //组合键多选元素
+    let selectedUl = document.getElementById('ul');
+
+    function ctrlSelect(event) {
+        if (event.target.tagName !== 'LI') return;
+
+        if (!event.ctrlKey) {
+            for (let child of event.target.parentElement.children) {
+                if (child.classList.contains('selected')) {
+                    child.classList.remove('selected');
+                }
+            }
+        }
+        event.target.classList.toggle('selected');
+    }
+
+    selectedUl.addEventListener('click', ctrlSelect);
+
+    //缩略图切换
+    let thumbs = document.getElementById('thumbs');
+
+    thumbs.onclick = function (event) {
+        let largeImg = document.getElementById('largeImg');
+        largeImg.src = event.target.closest('a').href;
+        return false;
+    }
+
+</script>
+</body>
+</html>

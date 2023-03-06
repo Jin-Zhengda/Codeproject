@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<style>
+    .clock #hour {
+        color: red;
+    }
+
+    .clock #min {
+        color: green;
+    }
+
+    .clock #sec {
+        color: blue;
+    }
+
+    .note {
+        position: fixed;
+        z-index: 1000;
+        padding: 5px;
+        border: 1px solid black;
+        background: white;
+        text-align: center;
+        font: italic 14px serif;
+    }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 10px solid #ccc;
+        margin: 0 0 0 100px;
+        padding: .5em 10px;
+        quotes: "\201C" "\201D" "\2018" "\2019";
+        display: inline-block;
+        white-space: pre;
+    }
+
+    blockquote:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: .1em;
+        margin-right: .25em;
+        vertical-align: -.4em;
+    }
+
+    #field {
+        width: 200px;
+        height: 150px;
+        border: 10px solid black;
+        background-color: #00FF00;
+        overflow: hidden;
+        position: fixed;
+        cursor: pointer;
+    }
+
+    #field a {
+        text-decoration: none;
+    }
+
+    #ball {
+        z-index: 9999;
+        height: 40px;
+        width: 40px;
+        position: fixed;
+        transition: all 1s ease-out;
+    }
+</style>
+<body>
+<a id="list">the list</a>
+<ul>
+    <li><a href="https://google.com">https://google.com</a></li>
+    <li><a href="/tutorial">/tutorial.html</a></li>
+    <li><a href="local/path">local/path</a></li>
+    <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+    <li><a href="https://nodejs.org">https://nodejs.org</a></li>
+    <li><a href="https://internal.com/test">https://internal.com/test</a></li>
+</ul>
+
+<ol id="elem">
+    <li>Hello</li>
+    <li>World</li>
+</ol>
+
+<!--<ul id="calculating">-->
+<!--    <li>Animals-->
+<!--        <ul>-->
+<!--            <li>Mammals-->
+<!--                <ul>-->
+<!--                    <li>Cows</li>-->
+<!--                    <li>Donkeys</li>-->
+<!--                    <li>Dogs</li>-->
+<!--                    <li>Tigers</li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li>Other-->
+<!--                <ul>-->
+<!--                    <li>Snakes</li>-->
+<!--                    <li>Birds</li>-->
+<!--                    <li>Lizards</li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    <li>Fishes-->
+<!--        <ul>-->
+<!--            <li>Aquarium-->
+<!--                <ul>-->
+<!--                    <li>Guppy</li>-->
+<!--                    <li>Angelfish</li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li>Sea-->
+<!--                <ul>-->
+<!--                    <li>Sea trout</li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--</ul>-->
+
+<div class="clock"><span id="hour">hh</span>:<span id="min">mm</span>:<span id="sec">ss</span></div>
+<button type="button" class="clock" id="start">start</button>
+<button type="button" class="clock" id="stop">stop</button>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde
+    quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
+    esse sequi officia sapiente.
+</p>
+
+<blockquote>
+    Teacher: Why are you late?
+    Student: There was a man who lost a hundred dollar bill.
+    Teacher: That's nice. Were you helping him look for it?
+    Student: No. I was standing on it.
+</blockquote>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt
+    voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident
+    molestias sit tempore omnis recusandae
+    esse sequi officia sapiente.
+</p>
+
+
+<div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</div>
+<script>
+    //筛选外部链接并标色
+    let elems = document.querySelectorAll('ul a');
+    for (let link of elems) {
+        if (link.href.includes('://') && !link.href.includes('https')) {
+            link.style.color = 'orange';
+        }
+    }
+
+    //去除节点
+    // let ol = document.querySelector('#elem');
+    //
+    // function clear(elem) {
+    //     elem.innerHTML = '';
+    // }
+    //
+    // clear(ol);
+
+    //根据用户输入创建列表
+    // function makeList() {
+    //     let ul = document.createElement('ul');
+    //     do {
+    //         let mess = prompt("Input:", '');
+    //         if (!mess) {
+    //             break;
+    //         } else {
+    //             let li = document.createElement('li');
+    //             li.textContent = mess;
+    //             ul.append(li);
+    //         }
+    //     } while (true);
+    //     document.body.append(ul);
+    // }
+    //
+    // makeList();
+
+    // //由对象树生成列表树
+    // let data = {
+    //     "Fish": {
+    //         "trout": {},
+    //         "salmon": {}
+    //     },
+    //
+    //     "Tree": {
+    //         "Huge": {
+    //             "sequoia": {},
+    //             "oak": {}
+    //         },
+    //         "Flowering": {
+    //             "apple tree": {},
+    //             "magnolia": {}
+    //         }
+    //     }
+    // };
+    //
+    // function makeTree(container, data) {
+    //     let ul = document.createElement('ul');
+    //     container.append(ul);
+    //     for (let tree in data) {
+    //         let li = document.createElement('li');
+    //         li.textContent = tree;
+    //         ul.append(li);
+    //         if (data[tree] === {}) {
+    //             break;
+    //         } else {
+    //             makeTree(li, data[tree]);
+    //         }
+    //     }
+    // }
+    //
+    // makeTree(document.body, data);
+
+    //计算列表树的子叶个数
+    // function treeChildCalculating(tree) {
+    //     let lis = tree.getElementsByTagName('li');
+    //     for (let li of lis) {
+    //         let count = li.getElementsByTagName('li').length;
+    //         if (!count) {
+    //             continue;
+    //         }
+    //         li.firstChild.data += "[" + count + "]";
+    //     }
+    // }
+    //
+    // treeChildCalculating(document.getElementById('calculating'));
+
+    //数字时钟
+    function updateTime() {
+        let hour = document.getElementById('hour');
+        let min = document.getElementById('min');
+        let sec = document.getElementById('sec');
+        let date = new Date();
+
+        if (date.getHours() < 10) {
+            hour.innerHTML = "0" + date.getHours();
+        } else {
+            hour.innerHTML = String(date.getHours());
+        }
+
+
+        if (date.getMinutes() < 10) {
+            min.innerHTML = "0" + date.getMinutes();
+        } else {
+            min.innerHTML = String(date.getMinutes());
+        }
+
+
+        if (date.getSeconds() < 10) {
+            sec.innerHTML = "0" + date.getSeconds();
+        } else {
+            sec.innerHTML = String(date.getSeconds());
+        }
+
+    }
+
+    let timerID = null;
+
+    function clockStart() {
+        if (!timerID) {
+            timerID = setInterval(updateTime, 1000);
+        }
+        updateTime();
+    }
+
+    function clockStop() {
+        clearInterval(timerID);
+        timerID = null;
+    }
+
+    let start = document.getElementById('start');
+    start.addEventListener('click', clockStart);
+
+    let stop = document.getElementById('stop');
+    stop.addEventListener('click', clockStop);
+
+    //创建通知
+    function showNotification(data) {
+        let div = document.createElement('div');
+        div.innerHTML = data.html;
+        div.className = data.className;
+        div.style.position = 'fixed';
+        div.style.top = data.top + 'px';
+        div.style.right = data.right + 'px';
+        div.style.backgroundColor = '#bfa';
+
+        document.body.append(div);
+        setTimeout(() => div.remove(), 1500);
+    }
+
+    // 在窗口的右上角附近显示一个带有文本 "Hello" 的元素
+    showNotification({
+        top: 10,
+        right: 10,
+        html: "Hello!",
+        className: "welcome"
+    });
+
+    function positionAt(anchor, position, elem) {
+        let anchorPos = anchor.getBoundingClientRect();
+        if (position === 'top-out') {
+            elem.style.left = anchorPos.left + 'px';
+            elem.style.top = anchorPos.top - elem.offsetHeight + 'px';
+        }
+        if (position === 'bottom-out') {
+            elem.style.left = anchorPos.left + 'px';
+            elem.style.top = anchorPos.top + anchor.offsetHeight + 'px';
+        }
+        if (position === 'right-out') {
+            elem.style.left = anchorPos.left + anchor.offsetWidth + 'px';
+            elem.style.top = anchorPos.top + 'px';
+        }
+        if (position === 'top-in') {
+            elem.style.left = anchorPos.left + 'px';
+            elem.style.top = anchorPos.top + 'px';
+        }
+        if (position === 'bottom-in') {
+            elem.style.left = anchorPos.left + 'px';
+            elem.style.top = anchorPos.top + anchor.offsetHeight - elem.offsetHeight + 'px';
+        }
+        if (position === 'right-in') {
+            elem.style.left = anchorPos.left + anchor.offsetWidth - elem.offsetWidth + 'px';
+            elem.style.top = anchorPos.top + 'px';
+        }
+    }
+
+    function showNote(anchor, position, html) {
+
+        let note = document.createElement('div');
+        note.className = "note";
+        note.innerHTML = html;
+        document.body.append(note);
+
+        positionAt(anchor, position, note);
+    }
+
+    let blockquote = document.querySelector('blockquote');
+
+    showNote(blockquote, "top-out", "note top-out");
+    showNote(blockquote, "right-out", "note right-out");
+    showNote(blockquote, "bottom-out", "note bottom-out");
+    showNote(blockquote, "top-in", "note top-in");
+    showNote(blockquote, "right-in", "note right-in");
+    showNote(blockquote, "bottom-in", "note bottom-in");
+
+
+    let field = document.getElementById('field');
+    field.addEventListener('click', ballMoving);
+
+    function ballMoving(event) {
+        let left = event.clientX;
+        let top = event.clientY;
+        let box = field.getBoundingClientRect();
+        let ball = document.getElementById('ball');
+        let borderWidth = parseInt(getComputedStyle(field).borderWidth);
+
+        if (left < box.left + borderWidth) {
+            ball.style.left = box.left + borderWidth + 'px';
+            ball.style.top = top - ball.clientHeight / 2 + 'px';
+        } else if (top < box.top + borderWidth) {
+            ball.style.left = left - ball.clientWidth / 2 + 'px';
+            ball.style.top = box.top + borderWidth + 'px';
+        } else if (left > box.left + field.clientWidth + borderWidth) {
+            ball.style.left = box.left + field.clientWidth + borderWidth - ball.clientWidth + 'px';
+            ball.style.top = top - ball.clientHeight / 2 + 'px';
+        } else if (top > box.top + field.clientHeight + borderWidth) {
+            ball.style.left = left - ball.clientWidth / 2 + 'px';
+            ball.style.top = box.top + field.clientHeight + borderWidth - ball.clientHeight + 'px';
+        } else {
+            ball.style.left = left - ball.clientWidth / 2 + 'px';
+            ball.style.top = top - ball.clientHeight / 2 + 'px';
+        }
+    }
+
+</script>
+</body>
+</html>

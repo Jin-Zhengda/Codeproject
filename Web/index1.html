@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECMAscript</title>
+</head>
+
+<body>
+
+<script>
+    //条件语句
+    // let name = prompt("Who's there?", '');
+    // if (name === "Admin") {
+    //
+    //     let passWord = prompt("Password?", '');
+    //
+    //     if (passWord === "TheMaster") {
+    //         alert("Welcome!");
+    //     } else if (passWord === '' || passWord === null) {
+    //         alert("Canceled.");
+    //     } else {
+    //         alert("Wrong password!");
+    //     }
+    // } else if (name === '' || name === null) {
+    //     alert("Canceled.");
+    // } else {
+    //     alert("I don't know you.")
+    // }
+
+    //对象方法的创建
+    // let calculator = {
+    //     a: 0,
+    //     b: 0,
+    // };
+    // calculator.read = function(){
+    //     this.a = +prompt("please input a.", '0');
+    //     this.b = +prompt("please input b.", '0');
+    // }
+    // calculator.sum = function(){
+    //     return this.a + this.b;
+    // }
+    // calculator.mul = function(){
+    //     return this.a * this.b;
+    // }
+    //
+    // calculator.read();
+    // alert( calculator.sum());
+    // alert( calculator.mul());
+
+    //构造器及“new”操作符
+    // function Calculator() {
+    //     this.read = function () {
+    //         this.a = +prompt("please input a.", '0');
+    //         this.b = +prompt("please input b.", '0');
+    //     }
+    //     this.sum = function () {
+    //         return this.a + this.b;
+    //     }
+    //     this.mul = function () {
+    //         return this.a * this.b;
+    //     }
+    // }
+    //
+    // let calculator = new Calculator();
+    // calculator.read();
+    //
+    // alert("Sum=" + calculator.sum());
+    // alert("Mul=" + calculator.mul());
+    //
+    // function Accumulator(startingValue) {
+    //     this.value = startingValue;
+    //     this.read = function () {
+    //         this.value += +prompt("Input?", '0');
+    //     }
+    // }
+    //
+    // let accumulator = new Accumulator(1);
+    //
+    // accumulator.read();
+    // accumulator.read();
+    //
+    // alert(accumulator.value);
+
+    //重复直到读取到数字
+    // function readNumber() {
+    //
+    //     let num;
+    //     do {
+    //         num = prompt("Input?", '');
+    //     } while (!isFinite(num));
+    //
+    //     if (num === null || num === '') {
+    //         return null;
+    //     } else {
+    //         return +num;
+    //     }
+    // }
+    //
+    // alert(readNumber());
+
+    //生成min~max的整数随机数，各个数字出现概率相同
+    // function randomInt(min, max) {
+    //     // here rand is from min to (max+1)
+    //     let num;
+    //     num = min + Math.random() * (max - min + 1);
+    //     return Math.floor(num);
+    // }
+    // alert(randomInt(0, 9));
+
+    //截断文本函数
+    // function truncate(str, maxlength) {
+    //     if (str.length > maxlength) {
+    //         return str.slice(0, maxlength - 1) + '...';
+    //     } else {
+    //         return str;
+    //     }
+    // }
+
+    //调用 arr[2] 函数也就是调用对象函数。自然地，它接收 this 引用的对象 arr 然后输出该数组
+    // let arr = ["a", "b"];
+    //
+    // arr.push(function () {
+    //     alert(this);
+    // })
+    //
+    // alert(arr[2]());
+
+    //数组求和函数
+    // function sumInput() {
+    //     let numbers = [];
+    //     let value;
+    //     let sum = 0;
+    //     do {
+    //         value = prompt("Input", '');
+    //         if (value !== ' ' && value !== null && isFinite(value)) {
+    //             numbers.push(+value);
+    //         } else {
+    //             break;
+    //         }
+    //     } while (true);
+    //
+    //     for (let number of numbers) {
+    //         sum += number;
+    //     }
+    //     return sum;
+    // }
+    //
+    // alert(sumInput());
+
+    //字符串拆分转换
+    // function camelize(str) {
+    //     let array = str.split('-');
+    //     for (let i = 0; i < array.length; i++) {
+    //         array[i] = array[i][0].toUpperCase() + array[i].slice(1);
+    //     }
+    //     return array.join('');
+    // }
+    //
+    // alert(camelize("my-short-string"));
+
+    //范围过滤
+    // function filterRange(arr, a, b) {
+    //     return arr.filter(item => item >= a && item <= b);
+    // }
+    //
+    // let arr = [5, 3, 8, 1];
+    //
+    // let filtered = filterRange(arr, 1, 4);
+    //
+    // alert(filtered); // 3,1（匹配值）
+    //
+    // alert(arr); // 5,3,8,1（未修改）
+
+    //原位范围过滤
+    // function filterRangeInPlace(arr, a, b) {
+    //     return arr.forEach(item => ((item < a || item > b) ? arr.splice(arr.indexOf(item, 0), 1) : item));
+    // }
+    //
+    // let arr = [5, 3, 8, 1];
+    //
+    // filterRangeInPlace(arr, 1, 4); // 删除了范围在 1 到 4 之外的所有值
+    //
+    // alert(arr); // [3, 1]
+
+    //可扩展的calculator对象
+    // function Calculator() {
+    //     this.operator = {
+    //         "+": (a, b) => (a + b),
+    //         "-": (a, b) => (a - b),
+    //     }
+    //     this.calculate = function (str) {
+    //         let arr = str.split(' ');
+    //         return this.operator[arr[1]](+arr[0], +arr[2]);
+    //     }
+    //     this.addMethod = function (name, func) {
+    //         this.operator[name] = func;
+    //     }
+    // }
+    //
+    // let powerCalc = new Calculator;
+    // powerCalc.addMethod("*", (a, b) => a * b);
+    // powerCalc.addMethod("/", (a, b) => a / b);
+    // powerCalc.addMethod("**", (a, b) => a ** b);
+    //
+    // let result = powerCalc.calculate("2 ** 3");
+    // alert(result); // 8
+
+    //累加器
+    // function getAverageAge(users) {
+    //     return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+    // }
+    //
+    // let john = {name: "John", age: 25};
+    // let pete = {name: "Pete", age: 30};
+    // let mary = {name: "Mary", age: 29};
+    //
+    // let arr = [john, pete, mary];
+    //
+    // alert(getAverageAge(arr)); // 28
+
+    //数组去重
+    //第一种方法仅使用数组
+    // function unique(arr) {
+    //     let result = [];
+    //     for (let str of arr) {
+    //         if (!result.includes(str)) {
+    //             result.push(str);
+    //         }
+    //     }
+    //     return result;
+    // }
+    //利用集合（set）的特点来实现
+    // function unique(arr){
+    //     return Array.from(new Set(arr));
+    // }
+    //
+    // let strings = ["Hare", "Krishna", "Hare", "Krishna",
+    //     "Krishna", "Krishna", "Hare", "Hare", ":-O"
+    // ];
+    //
+    // alert(unique(strings)); // Hare, Krishna, :-O
+
+    //从数组创建键（值）对象
+    // function groupById(arr) {
+    //     return arr.reduce((obj, item) => {
+    //         obj[item.id] = item;
+    //         return obj;
+    //     }, {})
+    // }
+    //
+    // let users = [
+    //     {id: 'john', name: "John Smith", age: 20},
+    //     {id: 'ann', name: "Ann Smith", age: 24},
+    //     {id: 'pete', name: "Pete Peterson", age: 31},
+    // ];
+    //
+    // let usersById = groupById(users);
+    // 调用函数后，我们应该得到：
+    // usersById = {
+    //   john: {id: 'john', name: "John Smith", age: 20},
+    //   ann: {id: 'ann', name: "Ann Smith", age: 24},
+    //   pete: {id: 'pete', name: "Pete Peterson", age: 31},
+    // }
+
+    //对象属性求和
+    // function sumSalaries(salaries) {
+    //     return Object.values(salaries).reduce((a, b) => a + b, 0);
+    // }
+    //
+    // let salaries = {
+    //     "John": 100,
+    //     "Pete": 300,
+    //     "Mary": 250
+    // };
+    //
+    // alert(sumSalaries(salaries)); // 650
+
+    //返回今天已经过去多少秒
+    // function getSecondsToday() {
+    //     let now = new Date();
+    //     let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    //     return Math.round((now - today) / 1000);
+    // }
+    //
+    // alert(getSecondsToday());
+
+    //递归输出单链表
+    // let list = {
+    //     value: 1,
+    //     next: {
+    //         value: 2,
+    //         next: {
+    //             value: 3,
+    //             next: {
+    //                 value: 4,
+    //                 next: null
+    //             }
+    //         }
+    //     }
+    // };
+    // let arr = [];
+    // function printList(list){
+    //     arr.push(list.value)
+    //     if(list.next === null){
+    //         return arr;
+    //     }else{
+    //         return printList(list.next);
+    //     }
+    // }
+    //
+    // alert(printList(list));
+
+    //任意数量括号求和
+    // function sum(a) {
+    //     let value = a;
+    //
+    //     function f(b) {
+    //         value += b;
+    //         //这里仅返回f而非f()表示未对其进行调用，而是返回函数本身
+    //         return f;
+    //     }
+    //
+    //     f.toString = function () {
+    //         return value;
+    //     }
+    //     return f;
+    // }
+    //
+    // alert(sum(0)(1)(2)(3)(4)(5));
+
+    //延时报数
+    //使用setInterval()函数
+    // function printNumbers(from, to) {
+    //     let i = from;
+    //     let timeId = setInterval(function () {
+    //         if (i <= to) {
+    //             alert(i++);
+    //         } else {
+    //             clearInterval(timeId);
+    //         }
+    //     }, 1000)
+    // }
+
+    //使用嵌套的setTimeout()函数
+    // function printNumbers(from, to) {
+    //     let i = from;
+    //     let timeId = setTimeout(function run() {
+    //         if (i <= to) {
+    //             alert(i++);
+    //             timeId = setTimeout(run, 1000);
+    //         } else {
+    //             clearTimeout(timeId);
+    //         }
+    //     }, 1000)
+    // }
+    //
+    // printNumbers(1, 5);
+
+    //类中的受保护和私有的属性和方法
+    // class CoffeeMachine {
+    //     _waterAmount = 0;
+    //     constructor(power) {
+    //         this._power = power;
+    //     }
+    //
+    //     get power() {
+    //         return this._power;
+    //     }
+    //
+    //     set waterAmount(value){
+    //         if(value < 0){
+    //             value = 0;
+    //         }
+    //         this._waterAmount = value;
+    //     }
+    //     get waterAmount() {
+    //         return this._waterAmount;
+    //     }
+    //
+    // }
+    //
+    // let coffeeMachine = new CoffeeMachine(100);
+    // alert(coffeeMachine.power);
+    // coffeeMachine.waterAmount = -10;
+    // alert(coffeeMachine.waterAmount);
+
+    //基于promise的延时
+    // function delay(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
+    //
+    // delay(3000).then(() => alert('runs after 3 seconds'));
+
+    //用 async/await 来重写loadJson函数
+    // async function loadJson(url) {
+    //     let response = await fetch(url);
+    //     if (response.status === 200) {
+    //         return await response.json();
+    //     }
+    //     throw new Error(response.status);
+    // }
+    //
+    // loadJson('https://javascript.info/no-such-user.json')
+    //     .catch(alert);
+
+    //在非 async 函数中调用 async 函数
+    // async function wait() {
+    //     await new Promise(resolve => setTimeout(resolve, 1000));
+    //
+    //     return 10;
+    // }
+    //
+    // function f() {
+    //     // ……这里你应该怎么写？
+    //     // 我们需要调用 async wait() 并等待以拿到结果 10
+    //     // 记住，我们不能使用 "await"
+    //     wait().then(result => alert(result));
+    // }
+    //
+    // f()
+
+    //种子伪随机生成器
+    // function* pseudoRandom(seed) {
+    //     let value = seed;
+    //     while (true) {
+    //         value = value * 16807 % 2147483647;
+    //         yield value;
+    //     }
+    // }
+    //
+    // let generator = pseudoRandom(1);
+    //
+    // alert(generator.next().value); // 16807
+    // alert(generator.next().value); // 282475249
+    // alert(generator.next().value); // 1622650073
+
+    //实现sleep函数
+    // function sleep(delay) {
+    //     return new Promise(resolve => setTimeout(resolve, delay));
+    // }
+    //
+    // let test = async function () {
+    //     for (let i = 0; i < 10; i++) {
+    //         alert(i);
+    //         await sleep(1000);
+    //     }
+    // }
+    //
+    // test();
+
+    //读取不存在的属性时出错
+    // let user = {
+    //     name: "John"
+    // };
+    //
+    // function wrap(target) {
+    //     return new Proxy(target, {
+    //         get(target, prop, receiver) {
+    //             if (prop in target) {
+    //                 return Reflect.get(target, prop, receiver);
+    //             } else {
+    //                 throw new ReferenceError(`Property doesn\'t exist: "${prop}"`);
+    //             }
+    //         }
+    //     });
+    // }
+    //
+    // user = wrap(user);
+    //
+    // alert(user.name); // John
+    // alert(user.age); // ReferenceError: Property doesn't exist: "age"
+
+    //访问 array[-1]
+    // let array = [1, 2, 3];
+    //
+    // array = new Proxy(array, {
+    //     get(target, prop, receiver) {
+    //         if (prop >= 0) {
+    //             return Reflect.get(target, prop, receiver);
+    //         } else {
+    //             return Reflect.get(target, target.length + +prop, receiver);
+    //         }
+    //
+    //     }
+    // });
+    //
+    // alert(array[-1]); // 3
+    // alert(array[-2]); // 2
+
+    //间谍装饰器
+    // function work(a, b) {
+    //     alert(a + b); // work 是一个任意的函数或方法
+    // }
+    //
+    // function spy(func) {
+    //     function wrapper(...args) {
+    //         wrapper.calls.push(args);
+    //         return func.apply(this, args);
+    //     }
+    //
+    //     wrapper.calls = [];
+    //     return wrapper;
+    // }
+    //
+    // work = spy(work);
+    //
+    // work(1, 2); // 3
+    // work(4, 5); // 9
+    //
+    // for (let args of work.calls) {
+    //     alert('call:' + args.join()); // "call:1,2", "call:4,5"
+    // }
+
+    //延时装饰器
+    // function f(x) {
+    //     alert(x);
+    // }
+    //
+    // function delay(f, ms) {
+    //     return function (...args) {
+    //         return setTimeout(() => f.apply(this, args), ms);
+    //     }
+    //
+    // }
+    //
+    // let f1000 = delay(f, 1000);
+    // let f2000 = delay(f, 2000);
+    //
+    // f1000("test"); // 在 1000ms 后显示 "test"
+    // f2000("test"); // 在 2000ms 后显示 "test"
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>More Events</title>
+</head>
+<style>
+    .slider {
+        border-radius: 5px;
+        background: #E0E0E0;
+        background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+        width: 310px;
+        height: 15px;
+        margin: 5px;
+    }
+
+    .thumb {
+        width: 10px;
+        height: 25px;
+        border-radius: 3px;
+        position: relative;
+        left: 10px;
+        top: -5px;
+        background: blue;
+        cursor: pointer;
+    }
+
+    .hours {
+        color: red;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .minutes {
+        color: green;
+    }
+
+    .seconds {
+        color: blue;
+    }
+
+    .clock {
+        border: 1px dashed black;
+        padding: 5px;
+        display: inline-block;
+        background: yellow;
+        position: absolute;
+        left: 50px;
+        top: 50px;
+    }
+
+    #tooltip {
+        position: absolute;
+        padding: 10px 20px;
+        border: 1px solid #b3c9ce;
+        border-radius: 4px;
+        text-align: center;
+        font: italic 14px/1.3 sans-serif;
+        color: #333;
+        background: #fff;
+        z-index: 100000;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+
+    body,
+    html {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    #matrix {
+        width: 400px;
+        margin: auto;
+        overflow: auto;
+        text-align: justify;
+    }
+
+    #arrowTop {
+        height: 9px;
+        width: 14px;
+        color: green;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+    }
+
+    #arrowTop::before {
+        content: '▲';
+    }
+
+    #mouse {
+        display: inline-block;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    #mouse:focus {
+        outline: 1px dashed black;
+    }
+
+
+    #prompt-form {
+        display: inline-block;
+        padding: 5px 5px 5px 70px;
+        width: 200px;
+        border: 1px solid black;
+        background: white url(https://en.js.cx/clipart/prompt.png) no-repeat left 5px;
+        vertical-align: middle;
+    }
+
+    #prompt-form-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        display: none;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    #prompt-form-container:before {
+        display: inline-block;
+        height: 100%;
+        content: '';
+        vertical-align: middle;
+    }
+
+    #cover-div {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9000;
+        width: 100%;
+        height: 100%;
+        background-color: gray;
+        opacity: 0.3;
+    }
+
+    #prompt-form input[name="text"] {
+        display: block;
+        margin: 5px;
+        width: 180px;
+    }
+
+
+</style>
+<body>
+<div id="slider" class="slider">
+    <div class="thumb"></div>
+</div>
+
+<div id="elem" class="clock">
+    <span class="hours">12</span> :
+    <span class="minutes">30</span> :
+    <span class="seconds">00</span>
+</div>
+
+
+<div id="tooltip" hidden>Tooltip</div>
+
+<!--<div id="matrix">-->
+<!--    <script>-->
+<!--        for (let i = 0; i < 2000; i++) document.writeln(i)-->
+<!--    </script>-->
+<!--</div>-->
+
+<div id="arrowTop"></div>
+
+<p>用鼠标点击以下老鼠，并使用键盘的方向键移动它。</p>
+
+<pre id="mouse">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+<div id="prompt-form-container">
+    <form id="prompt-form">
+        <div id="prompt-message">Enter something...
+            <br>Please..
+        </div>
+        <input name="text" type="text">
+        <input type="submit" value="Ok">
+        <input type="button" name="cancel" value="Cancel" id="prompt-button">
+    </form>
+</div>
+<button type="button" id="show-form">Click to show the form</button>
+</body>
+<script>
+    //拖动条
+    let thumb = document.querySelector('.thumb');
+    let slider = document.querySelector('.slider');
+
+    thumb.onmousedown = function (event) {
+        event.preventDefault();
+
+        let shiftX = event.clientX - thumb.getBoundingClientRect().left;
+
+        function onMouseMove(event) {
+            let left = event.pageX - shiftX - slider.getBoundingClientRect().left;
+            let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+
+            if (left < 0) {
+                left = 0;
+            }
+            if (left > rightEdge) {
+                left = rightEdge;
+            }
+            thumb.style.left = left + 'px';
+        }
+
+        function onMouseup() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseup);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseup);
+    }
+
+    thumb.ondragstart = function () {
+        return false;
+    }
+
+
+    //智能提示工具
+    class HoverIntent {
+
+        constructor({
+                        sensitivity = 0.1, // speed less than 0.1px/ms means "hovering over an element"
+                        interval = 100, // measure mouse speed once per 100ms: calculate the distance between previous and next points
+                        elem,
+                        over,
+                        out
+                    }) {
+            this.sensitivity = sensitivity;
+            this.interval = interval;
+            this.elem = elem;
+            this.over = over;
+            this.out = out;
+
+            // make sure "this" is the object in event handlers.
+            this.onMouseMove = this.onMouseMove.bind(this);
+            this.onMouseOver = this.onMouseOver.bind(this);
+            this.onMouseOut = this.onMouseOut.bind(this);
+
+            // assign the handlers
+            elem.addEventListener("mouseover", this.onMouseOver);
+            elem.addEventListener("mouseout", this.onMouseOut);
+
+            // continue from this point
+
+        }
+
+        onMouseOver(event) {
+            /* ... */
+        }
+
+        onMouseOut(event) {
+            /* ... */
+        }
+
+        onMouseMove(event) {
+            /* ... */
+        }
+
+
+        destroy() {
+            /* your code to "disable" the functionality, remove all handlers */
+            /* it's needed for the tests to work */
+        }
+
+    }
+
+    let elem = document.getElementById('elem');
+    let tooltip = document.getElementById('tooltip');
+
+    new HoverIntent({
+        elem,
+        over() {
+            tooltip.style.left = elem.getBoundingClientRect().left + 5 + 'px';
+            tooltip.style.top = elem.getBoundingClientRect().bottom + 5 + 'px';
+            tooltip.hidden = false;
+        },
+        out() {
+            tooltip.hidden = true;
+        }
+    });
+
+
+    let set = new Set();
+
+    //键盘控制
+    function runOnKeys(func, ...codes) {
+        document.addEventListener('keydown', function (event) {
+            set.add(event.code);
+
+            for (let code of codes) {
+                if (!set.has(code)) {
+                    return;
+                }
+            }
+
+            // 在 alert 期间，如果访客松开了按键，
+            // JavaScript 就不会获得 "keyup" 事件
+            // 那么集合 set 会保持假设这些按键是被按下的状态
+            // 因此，为避免“粘滞”键，我们对状态进行了重置
+            // 如果用户想再次运行热键 —— 他们需要再次按下所有键
+            set.clear();
+
+            func();
+        });
+
+        document.addEventListener('keyup', function (event) {
+            set.delete(event.code);
+        });
+
+    }
+
+    runOnKeys(
+        () => alert("Hello!"),
+        "KeyQ",
+        "KeyW"
+    );
+
+    // //无限滚动的页面
+    // let fixedHeight = 50;
+    //
+    // function scrollPage() {
+    //     //如何检测页面滚动到了末端?
+    //     //文档（document）在 <html> 标签中被表示（被包含）为 document.documentElement
+    //     //我们可以通过 document.documentElement.getBoundingClientRect() 来获取整个文档相对于窗口的坐标。bottom 属性将是文档末端的相对于窗口的坐标。
+    //     //请注意，bottom 不能为 0，因为它永远不会到达窗口顶部。bottom 坐标的最低限度是窗口高度，我们无法再向上滚动了。
+    //     //我们可以获得窗口的高度为 document.documentElement.clientHeight
+    //     while (true) {
+    //         let windowBottom = document.documentElement.getBoundingClientRect().bottom;
+    //         if (windowBottom > document.documentElement.clientHeight + fixedHeight) break;
+    //         let p = document.createElement('p');
+    //         p.innerHTML = `Date: ${new Date()}`;
+    //         document.body.append(p);
+    //
+    //     }
+    // }
+    //
+    // window.addEventListener('scroll', scrollPage);
+    // //使文档先滚动起来
+    // scrollPage();
+
+    //"到顶部"按钮
+    let fixedTop = -500;
+    let arrowTop = document.getElementById('arrowTop');
+    arrowTop.hidden = true;
+
+    function upTop(event) {
+        let top = document.documentElement.getBoundingClientRect().top;
+        if (top < fixedTop) {
+            arrowTop.hidden = false;
+            arrowTop.onclick = function () {
+                window.scrollTo(0, 0);
+            }
+        } else {
+            arrowTop.hidden = true;
+        }
+    }
+
+    window.addEventListener('scroll', upTop);
+
+    //键盘控制移动
+    let mouse = document.getElementById('mouse');
+    //使mouse元素可以被聚焦
+    mouse.setAttribute('tabindex', '1');
+    mouse.onfocus = function () {
+        window.addEventListener('keydown', moveMouse);
+    }
+
+    mouse.onblur = function () {
+        window.removeEventListener('keydown', moveMouse);
+    }
+
+    function moveMouse(event) {
+        event.preventDefault();
+        let coords = mouse.getBoundingClientRect();
+        let left = coords.left;
+        let top = coords.top;
+        const speed = 10;
+        mouse.style.position = 'absolute';
+        mouse.style.zIndex = '1000';
+        switch (event.code) {
+            case "ArrowRight":
+                mouse.style.left = left + speed + 'px';
+                break;
+            case "ArrowUp":
+                if (top - speed < 0) {
+                    mouse.style.top = 0 + 'px';
+                } else {
+                    mouse.style.top = top - speed + 'px';
+                }
+                break;
+            case "ArrowLeft":
+                if (left - speed < 0) {
+                    mouse.style.left = 0 + 'px';
+                } else {
+                    mouse.style.left = left - speed + 'px';
+                }
+                break;
+            case "ArrowDown":
+                mouse.style.top = top + speed + 'px';
+        }
+    }
+
+
+    //创建模态框
+    let showButton = document.getElementById('show-form');
+    let promptContainer = document.getElementById('prompt-form-container');
+    let promptMessage = document.getElementById('prompt-message');
+    let promptForm = document.getElementById('prompt-form');
+
+    //使用半透明的元素来遮盖网页下面的元素
+    function showCover() {
+        let coverDiv = document.createElement('div');
+        //覆盖页面
+        coverDiv.id = 'cover-div';
+
+        //阻止页面滚动
+        document.body.style.overflowY = 'hidden';
+
+        document.body.append(coverDiv);
+    }
+
+    function hideCover() {
+        document.getElementById('cover-div').remove();
+        document.body.style.overflowY = '';
+        //移除键盘事件
+        document.onkeydown = null;
+    }
+
+    function showPrompt(html, callback) {
+        showCover();
+        promptMessage.innerHTML = html;
+        //使表单文本框默认无内容
+        promptForm.text.value = '';
+
+        //恢复页面并调用callback
+        function complete(value) {
+            hideCover();
+            promptContainer.style.display = 'none';
+            callback(value);
+        }
+
+        promptForm.onsubmit = function () {
+            if (promptForm.text.value !== '') {
+                complete(promptForm.text.value);
+            }
+            //阻止默认事件，即提交后的跳转
+            return false;
+        }
+
+        promptForm.cancel.onclick = function () {
+            complete(null);
+        }
+
+        document.onkeydown = function (event) {
+            if (event.key === 'Escape') {
+                complete(null);
+            }
+        }
+
+        //使键盘操作的焦点只在模态框中变动
+        let firstElem = promptForm.elements[0];
+        let lastElem = promptForm.elements[promptForm.elements.length - 1];
+
+        lastElem.onkeydown = function (event) {
+            if(event.key === 'Tab' && !event.shiftKey){
+                firstElem.focus();
+                return false;
+            }
+        }
+
+        firstElem.onkeydown = function (event){
+            if(event.key === 'Tab' && event.shiftKey){
+                lastElem.focus();
+                return false;
+            }
+        }
+
+        //初始化模态框状态
+        promptContainer.style.display = 'block';
+        promptForm.text.focus();
+
+    }
+
+    showButton.addEventListener('click', function () {
+        showPrompt("Enter something<br>...smart :)", function (value) {
+            alert("You entered: " + value);
+        })
+    });
+
+</script>
+</html>
