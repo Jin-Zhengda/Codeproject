@@ -1,5 +1,6 @@
 package Java;
-//单向链表
+
+//singly linked list
 public class SLList<DataType> {
     public class Node {
         public DataType item;
@@ -50,11 +51,36 @@ public class SLList<DataType> {
         return size;
     }
 
+    public DataType get(int i) {
+        return getNode(i).item;
+    }
+
+    //assume that index > 0 && index < size - 1 
+    public void insert(DataType x, int index) {
+        Node p = getNode(index);
+        Node newNode = new Node(x, p.next);
+        p.next = newNode;
+        size++;
+    }
+
+    private Node getNode(int index) {
+        Node p = sentinel.next;
+        int count = 0;
+        while(true) {
+            if(count == index) {
+                return p;
+            }else {
+                p = p.next;
+                count++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         SLList<Integer> L = new SLList<>(3);
         L.addFirst(2);
         L.addFirst(1);
         L.addLast(0);
-        System.out.print(L.getLast());
+        System.out.print(L.get(2));
     }
 }
