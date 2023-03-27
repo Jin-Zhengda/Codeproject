@@ -55,7 +55,7 @@ public class SLList<DataType> {
         return getNode(i).item;
     }
 
-    //assume that index > 0 && index < size - 1 
+    //assume that index >= 0 && index < size - 1 
     public void insert(DataType x, int index) {
         Node p = getNode(index);
         Node newNode = new Node(x, p.next);
@@ -64,6 +64,9 @@ public class SLList<DataType> {
     }
 
     private Node getNode(int index) {
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
         Node p = sentinel.next;
         int count = 0;
         while(true) {
