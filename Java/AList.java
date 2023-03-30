@@ -1,5 +1,3 @@
-package Java;
-
 //可变数组
 public class AList<Item> {
     private Item[] items;

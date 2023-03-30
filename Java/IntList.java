@@ -1,5 +1,3 @@
-package Java;
-
 public class IntList {
     int first;
     IntList rest;
