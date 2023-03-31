@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 //可迭代集合
 public class ArraySet<T> implements Iterable<T> {
@@ -18,8 +20,8 @@ public class ArraySet<T> implements Iterable<T> {
         }
 
         public T next() {
-            T returnItem = items[size - 1];
-            size += 1;
+            T returnItem = items[pos];
+            pos += 1;
             return returnItem;
         }
     }
@@ -34,6 +36,9 @@ public class ArraySet<T> implements Iterable<T> {
     }
 
     public void add(T x) {
+        if (x == null) {
+            throw new IllegalArgumentException("can not add null!");
+        }
         if (contains(x)) {
             return;
         }
@@ -43,11 +48,6 @@ public class ArraySet<T> implements Iterable<T> {
 
     public boolean contains(T x) {
         for (int i = 0; i < size; i++) {
-            if (items[i] == null) {
-                if (x == null) {
-                    return true;
-                }
-            }
             if (x.equals(items[i])) {
                 return true;
             }
@@ -59,7 +59,56 @@ public class ArraySet<T> implements Iterable<T> {
         return size;
     }
 
-    public static void main(String[] args) {
+    public static <Glerp> ArraySet<Glerp> of(Glerp...stuff) {
+        ArraySet<Glerp> returnSet = new ArraySet<>();
+        for (Glerp x : stuff) {
+            returnSet.add(x);
+        }
+        return returnSet;
+    }
 
+    @Override
+    public String toString() {
+        List<String> stringOfSet = new ArrayList<>();
+        for (T x: this) {
+            stringOfSet.add(x);
+        }
+        return "[" + String.join(", ", stringOfSet) + "]";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (other == this) {
+            return true;
+        }
+        if (other.getClass() != this.getClass()) {
+            return false;
+        }
+        ArraySet<T> o = (ArraySet<T>) other;
+        if (o.size() != this.size()) {
+            return false;
+        }
+        for (T item : this) {
+            if (!o.contains(item)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        ArraySet<Integer> set = new ArraySet<>();
+        set.add(11);
+        set.add(63);
+        set.add(63);
+        set.add(2);
+        System.out.println(set.contains(2));
+        System.out.println(set);
+        // for (int i : set) {
+        // System.out.println(i);
+        // }
     }
 }
