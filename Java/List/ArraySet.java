@@ -1,3 +1,4 @@
+package List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -70,8 +71,8 @@ public class ArraySet<T> implements Iterable<T> {
     @Override
     public String toString() {
         List<String> stringOfSet = new ArrayList<>();
-        for (T x: this) {
-            stringOfSet.add(x);
+        for (T x : this) {
+            stringOfSet.add(x.toString());
         }
         return "[" + String.join(", ", stringOfSet) + "]";
     }
@@ -84,19 +85,17 @@ public class ArraySet<T> implements Iterable<T> {
         if (other == this) {
             return true;
         }
-        if (other.getClass() != this.getClass()) {
-            return false;
-        }
-        ArraySet<T> o = (ArraySet<T>) other;
-        if (o.size() != this.size()) {
-            return false;
-        }
-        for (T item : this) {
-            if (!o.contains(item)) {
+        if (other instanceof ArraySet oas) {
+            if (oas.size() != this.size()) {
                 return false;
             }
+            for (T item : this) {
+                if (!oas.contains(item)) {
+                    return false;
+                }
+            }
         }
-        return true;
+        return false;
     }
 
     public static void main(String[] args) {

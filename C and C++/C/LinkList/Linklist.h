@@ -4,177 +4,178 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node{
+typedef struct node
+{
     int value;
-    struct node* next;
-}Node;
+    struct node *next;
+} Node;
 
-typedef struct list{
-    Node* head;
-    Node* tail;
-}List;
+typedef struct list
+{
+    Node *head;
+    Node *tail;
+} List;
 
 List list;
 
-void AddLinklist(List* pList,int number)
+void AddLinklist(List *pList, int number)
 {
-    Node* p=(Node*)malloc(sizeof(Node));
-    if(p==NULL)
+    Node *p = (Node *)malloc(sizeof(Node));
+    if (p == NULL)
     {
         printf("No enough memories!\n");
         exit(1);
     }
     else
     {
-        p->value=number;
-        p->next=NULL;
+        p->value = number;
+        p->next = NULL;
     }
-    pList->tail=pList->head;
-    if(pList->tail!=NULL)
+    pList->tail = pList->head;
+    if (pList->tail != NULL)
     {
-        while(pList->tail->next!=NULL)
+        while (pList->tail->next != NULL)
         {
-            pList->tail=pList->tail->next;
+            pList->tail = pList->tail->next;
         }
-        pList->tail->next=p;
+        pList->tail->next = p;
     }
-    else 
+    else
     {
-        pList->head=p;
+        pList->head = p;
     }
 }
 
-void PrintLinklist(List* pList)
+void PrintLinklist(List *pList)
 {
-    Node* p;
-    for(p=pList->head;p!=NULL;p=p->next)
+    Node *p;
+    for (p = pList->head; p != NULL; p = p->next)
     {
-        printf("%d\t",p->value);
+        printf("%d\t", p->value);
     }
     printf("\n");
 }
 
-void SearchLinklist(List* list,int number)
+void SearchLinklist(List *list, int number)
 {
-    Node* p;
-    int find=0;
-    int i=1;
-    for(p=list->head;p!=NULL;p=p->next,i++)
+    Node *p;
+    int find = 0;
+    int i = 1;
+    for (p = list->head; p != NULL; p = p->next, i++)
     {
-        if(p->value==number)
+        if (p->value == number)
         {
-            find=1;
-            printf("Get it!No.%d\n",i);
+            find = 1;
+            printf("Get it!No.%d\n", i);
             break;
         }
     }
-    if(!find)
+    if (!find)
     {
         printf("Not Found!\n");
     }
 }
 
-void DeleteLinklist(List* pList,int number)
+void DeleteLinklist(List *pList, int number)
 {
-    Node* p=NULL;
-    Node* pr=NULL;
-    int find=0;
-    for(p=pList->head;p!=NULL;pr=p,p=p->next)
+    Node *p = NULL;
+    Node *pr = NULL;
+    int find = 0;
+    for (p = pList->head; p != NULL; pr = p, p = p->next)
     {
-        if(p==NULL)
+        if (p == NULL)
         {
             printf("Empty!\n");
             return;
         }
-        else if(p->value==number)
+        else if (p->value == number)
         {
-            if(pr!=NULL)
+            if (pr != NULL)
             {
-                pr->next=p->next;
+                pr->next = p->next;
             }
             else
             {
-                pList->head=p->next;
+                pList->head = p->next;
             }
             free(p);
-            find=1;
+            find = 1;
             break;
         }
     }
-    if(!find)
+    if (!find)
     {
         printf("Not Found!\n");
     }
 }
 
-void SortLinklist(List* pList)
+void SortLinklist(List *pList)
 {
     int t;
-    Node* p;
-    Node* pr;
-    for(p=pList->head;p!=NULL;p=p->next)
+    Node *p;
+    Node *pr;
+    for (p = pList->head; p != NULL; p = p->next)
     {
-        for(pr=p->next;pr!=NULL;pr=pr->next)
+        for (pr = p->next; pr != NULL; pr = pr->next)
         {
-            if(p->value<=pr->value)
+            if (p->value <= pr->value)
             {
-                t=p->value;
-                p->value=pr->value;
-                pr->value=t;
+                t = p->value;
+                p->value = pr->value;
+                pr->value = t;
             }
         }
     }
-
 }
 
-void InsertLinlist(List* pList,int number)
+void InsertLinlist(List *pList, int number)
 {
-    Node* p=(Node*)malloc(sizeof(Node));
-    Node* pr=NULL;
-    if(p==NULL)
+    Node *p = (Node *)malloc(sizeof(Node));
+    Node *pr = NULL;
+    if (p == NULL)
     {
         printf("No enough memories!\n");
         exit(1);
     }
     else
     {
-        p->next=NULL;
-        p->value=number;
+        p->next = NULL;
+        p->value = number;
     }
-    if(pList->head==NULL)
+    if (pList->head == NULL)
     {
-        pList->head=p;
+        pList->head = p;
     }
-    else if(p->value>pList->head->value)
+    else if (p->value > pList->head->value)
     {
-        p->next=pList->head;
-        pList->head=p;
+        p->next = pList->head;
+        pList->head = p;
     }
-    else if(pList->tail->value>p->value)
+    else if (pList->tail->value > p->value)
     {
-        pList->tail->next=p;
+        pList->tail->next = p;
     }
     else
     {
-        for(pr=pList->head;pr!=NULL;pr=pr->next)
+        for (pr = pList->head; pr != NULL; pr = pr->next)
         {
-            if(pr->value>=p->value&&pr->next->value<=p->value)
+            if (pr->value >= p->value && pr->next->value <= p->value)
             {
-                p->next=pr->next;
-                pr->next=p;
+                p->next = pr->next;
+                pr->next = p;
                 break;
             }
         }
     }
 }
 
-void FreeLinklist(List* list)
+void FreeLinklist(List *list)
 {
-    Node* p;
-    while(list->head!=NULL)
+    Node *p;
+    while (list->head != NULL)
     {
-        p=list->head;
-        list->head=list->head->next;
+        p = list->head;
+        list->head = list->head->next;
         free(p);
     }
 }

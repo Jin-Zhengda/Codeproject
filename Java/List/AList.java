@@ -1,3 +1,4 @@
+package List;
 //可变数组
 public class AList<Item> {
     private Item[] items;
