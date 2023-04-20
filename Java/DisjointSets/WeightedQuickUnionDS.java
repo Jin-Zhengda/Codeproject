@@ -1,13 +1,14 @@
 package DisjointSets;
 
-public class WeightedQuickUnionDS implements DisjointSets{
+public class WeightedQuickUnionDS implements DisjointSets {
     private int[] id;
-    //O(N)
+
+    // O(N)
     public WeightedQuickUnionDS(int N) {
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = -1;
-        } 
+        }
     }
 
     private int findRoot(int p) {
@@ -16,7 +17,8 @@ public class WeightedQuickUnionDS implements DisjointSets{
         }
         return p;
     }
-    //O(logN)
+
+    // O(logN)
     @Override
     public void connect(int p, int q) {
         int i = findRoot(p);
@@ -29,7 +31,8 @@ public class WeightedQuickUnionDS implements DisjointSets{
             id[i] = j;
         }
     }
-    //O(logN)
+
+    // O(logN)
     @Override
     public boolean isConnect(int p, int q) {
         return findRoot(p) == findRoot(q);

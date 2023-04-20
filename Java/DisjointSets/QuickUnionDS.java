@@ -2,7 +2,8 @@ package DisjointSets;
 
 public class QuickUnionDS implements DisjointSets {
     private int[] id;
-    //O(N)
+
+    // O(N)
     public QuickUnionDS(int N) {
         id = new int[N];
         // use -1 to represent the root of a tree
@@ -17,14 +18,16 @@ public class QuickUnionDS implements DisjointSets {
         }
         return p;
     }
-    //O(N)
+
+    // O(N)
     @Override
     public void connect(int p, int q) {
         int i = findRoot(p);
         int j = findRoot(q);
         id[j] = i;
     }
-    //O(N)
+
+    // O(N)
     @Override
     public boolean isConnect(int p, int q) {
         return findRoot(p) == findRoot(q);

@@ -1,13 +1,14 @@
 package DisjointSets;
 
-public class WQUwithPathCompressionDS implements DisjointSets{
+public class WQUwithPathCompressionDS implements DisjointSets {
     private int[] id;
-    //O(N)
+
+    // O(N)
     public WQUwithPathCompressionDS(int N) {
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = -1;
-        } 
+        }
     }
 
     private int findRoot(int p) {
@@ -23,7 +24,8 @@ public class WQUwithPathCompressionDS implements DisjointSets{
         }
         return q;
     }
-    //O(lg*N)
+
+    // O(lg*N)
     @Override
     public void connect(int p, int q) {
         int i = findRoot(p);
@@ -36,10 +38,11 @@ public class WQUwithPathCompressionDS implements DisjointSets{
             id[i] = j;
         }
     }
-    //O(lg*N)
+
+    // O(lg*N)
     @Override
     public boolean isConnect(int p, int q) {
         return findRoot(p) == findRoot(q);
     }
-    
+
 }

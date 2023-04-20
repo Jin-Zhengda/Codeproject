@@ -2,14 +2,16 @@ package DisjointSets;
 
 public class QuickFindDS implements DisjointSets {
     private int[] id;
-    //O(N)
+
+    // O(N)
     public QuickFindDS(int N) {
         id = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
         }
     }
-    //O(N)
+
+    // O(N)
     @Override
     public void connect(int p, int q) {
         int pid = id[p];
@@ -20,7 +22,8 @@ public class QuickFindDS implements DisjointSets {
             }
         }
     }
-    //O(1)
+
+    // O(1)
     @Override
     public boolean isConnect(int p, int q) {
         return id[p] == id[q];
