@@ -491,46 +491,46 @@
     // alert(array[-2]); // 2
 
     //间谍装饰器
-    // function work(a, b) {
-    //     alert(a + b); // work 是一个任意的函数或方法
-    // }
-    //
-    // function spy(func) {
-    //     function wrapper(...args) {
-    //         wrapper.calls.push(args);
-    //         return func.apply(this, args);
-    //     }
-    //
-    //     wrapper.calls = [];
-    //     return wrapper;
-    // }
-    //
-    // work = spy(work);
-    //
-    // work(1, 2); // 3
-    // work(4, 5); // 9
-    //
-    // for (let args of work.calls) {
-    //     alert('call:' + args.join()); // "call:1,2", "call:4,5"
-    // }
+    function work(a, b) {
+        alert(a + b); // work 是一个任意的函数或方法
+    }
+    
+    function spy(func) {
+        function wrapper(...args) {
+            wrapper.calls.push(args);
+            return func.apply(this, args);
+        }
+    
+        wrapper.calls = [];
+        return wrapper;
+    }
+    
+    work = spy(work);
+    
+    work(1, 2); // 3
+    work(4, 5); // 9
+    
+    for (let args of work.calls) {
+        alert('call:' + args.join()); // "call:1,2", "call:4,5"
+    }
 
     //延时装饰器
-    // function f(x) {
-    //     alert(x);
-    // }
-    //
-    // function delay(f, ms) {
-    //     return function (...args) {
-    //         return setTimeout(() => f.apply(this, args), ms);
-    //     }
-    //
-    // }
-    //
-    // let f1000 = delay(f, 1000);
-    // let f2000 = delay(f, 2000);
-    //
-    // f1000("test"); // 在 1000ms 后显示 "test"
-    // f2000("test"); // 在 2000ms 后显示 "test"
+    function f(x) {
+        alert(x);
+    }
+    
+    function delay(f, ms) {
+        return function (...args) {
+            return setTimeout(() => f.apply(this, args), ms);
+        }
+    
+    }
+    
+    let f1000 = delay(f, 1000);
+    let f2000 = delay(f, 2000);
+    
+    f1000("test"); // 在 1000ms 后显示 "test"
+    f2000("test"); // 在 2000ms 后显示 "test"
 
 </script>
 </body>
