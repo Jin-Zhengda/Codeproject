@@ -1,25 +1,25 @@
-//文曲星猜数
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <time.h>
-// #define N 4
+// 文曲星猜数
+//  #include <stdio.h>
+//  #include <stdlib.h>
+//  #include <time.h>
+//  #define N 4
 
 // void GuessNumber(int a[],int n)
 // {
 //     int i, j, x, y, cnt, find;
 //     int b[N] = {0};
 //     cnt = find = 0;
-    
+
 //     printf("Start:\n");
 //     do{
 //         x = y = 0;
-        
+
 //         for(i = 0; i < N; i++)
 //         {
 //             scanf("%d", &b[i]);
 //         }
 //         cnt++;
-        
+
 //         for(i = 0; i < N; i++)
 //         {
 //             if(a[i] == b[i])
@@ -39,12 +39,12 @@
 //             printf("Congratulations!\n");
 //             find = 1;
 //         }
-//         else 
+//         else
 //         {
 //             printf("%dA%dB\n", x, y);
 //         }
 //     }while(cnt <= n);
-    
+
 //     if(!find)
 //     {
 //         printf("You haven't guess the right number!");
@@ -56,7 +56,7 @@
 //     int a[N] = {0};
 //     int i, flag, n;
 //     srand((unsigned int)time(NULL));
-    
+
 //     do{
 //         for(i = 0; i < N; i++)
 //         {
@@ -64,20 +64,19 @@
 //         }
 //         flag = (a[0]!= a[1]&&a[0]!= a[2]&&a[0]!= a[3]&&a[1]!= a[2]&&a[1]!= a[3]&&a[2]!= a[3]&&a[0]!= 0);
 //     }while(!flag);
-    
+
 //     printf("Iuput n:");
 //     scanf("%d", &n);
 //     GuessNumber(a, n);
-    
+
 //     return 0;
 // }
 
-
-//评分排序并输出各个评委评分与平均分之差的和
-// #include <stdio.h>
-// #include <math.h>
-// #define n 3
-// #define m 5
+// 评分排序并输出各个评委评分与平均分之差的和
+//  #include <stdio.h>
+//  #include <math.h>
+//  #define n 3
+//  #define m 5
 
 // void ReadNumber(int number[], int num)
 // {
@@ -88,7 +87,7 @@
 //     }
 // }
 
-// void ReadScore(int score[][m])                                                    
+// void ReadScore(int score[][m])
 // {
 //     int i, j;
 //     for (i = 0; i < n; i++)
@@ -163,7 +162,7 @@
 //     }
 // }
 
-// void Print(int output[], int num)                                        
+// void Print(int output[], int num)
 // {
 //     int i;
 //     for (i = 0; i < num; i++)
@@ -196,7 +195,6 @@
 //     Print(deviation, m);
 //     return 0;
 // }
-
 
 // 冒泡排序
 // #include <stdio.h>
@@ -253,10 +251,9 @@
 //     return 0;
 // }
 
-
-//计算40以内的数的阶乘
-// #include <stdio.h>
-// #define N 50
+// 计算40以内的数的阶乘
+//  #include <stdio.h>
+//  #define N 50
 
 // int Fact(int num[],int n)
 // {
@@ -318,11 +315,10 @@
 //     return 0;
 // }
 
-
-//计算矩阵乘法
-// #include <stdio.h>
-// #define ROW 2
-// #define COL 3
+// 计算矩阵乘法
+//  #include <stdio.h>
+//  #define ROW 2
+//  #define COL 3
 
 // void MultiplyMatrix(int a[ROW][COL],int b[COL][ROW],int c[ROW][ROW])
 // {
@@ -378,10 +374,9 @@
 //     return 0;
 // }
 
-
-//排序并插值
-// #include <stdio.h>
-// #define N 50
+// 排序并插值
+//  #include <stdio.h>
+//  #define N 50
 
 // void DateSort(int num[],int n)
 // {
@@ -446,11 +441,10 @@
 //     return 0;
 // }
 
-
-//报数游戏
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <time.h>
+// 报数游戏
+//  #include <stdio.h>
+//  #include <stdlib.h>
+//  #include <time.h>
 
 // 生成1~10的一个随机数
 // int Rand(void)
@@ -481,8 +475,8 @@
 // int Progress(int first)
 // {
 //     int i=1;
-//     do{                                                                     
-//         if(first)                                                   
+//     do{
+//         if(first)
 //         {
 //             if((30-i)%3==1)
 //             {
@@ -495,7 +489,7 @@
 //                 printf("Computer's order:%d\n",i+2);
 //                 i=i+2;
 //             }
-//             else 
+//             else
 //             {
 //                 int ra;
 //                 ra=Rand();
@@ -504,7 +498,7 @@
 //                     printf("Computer's order:%d\n",i+1);
 //                     i++;
 //                 }
-//                 else 
+//                 else
 //                 {
 //                     printf("Computer's order:%d\n",i+1);
 //                     printf("Computer's order:%d\n",i+2);
@@ -517,10 +511,10 @@
 //                 return 0;
 //             }
 
-//             first=0; 
+//             first=0;
 //         }
 //         else
-//         {   
+//         {
 //             int k;
 
 //             printf("Your time/times(please input 1 or 2):");
@@ -537,7 +531,7 @@
 //                 printf("Your order:%d\n",i+2);
 //                 i=i+2;
 //             }
-            
+
 //             if(i==30)
 //             {
 //                 return 1;
@@ -547,7 +541,6 @@
 //         }
 //     }while(i<=30);
 // }
-    
 
 // int main()
 // {
@@ -568,10 +561,9 @@
 //     return 0;
 // }
 
-
-//输出杨辉三角形
-// #include <stdio.h>
-// #define N 10
+// 输出杨辉三角形
+//  #include <stdio.h>
+//  #define N 10
 
 // void YHTraingle(int n)
 // {
@@ -610,9 +602,8 @@
 //     return 0;
 // }
 
-
-//交换数组中的最大值和最小值
-// #include <stdio.h>
+// 交换数组中的最大值和最小值
+//  #include <stdio.h>
 
 // void Swap(int *x,int *y)
 // {
@@ -662,12 +653,11 @@
 //     return 0;
 // }
 
-
-//计算日期
-// #include <stdio.h>
-// #include <stdlib.h>
-// int a[]={31,28,31,30,31,30,31,31,30,31,30,31};
-// int b[]={31,29,31,30,31,30,31,31,30,31,30,31};
+// 计算日期
+//  #include <stdio.h>
+//  #include <stdlib.h>
+//  int a[]={31,28,31,30,31,30,31,31,30,31,30,31};
+//  int b[]={31,29,31,30,31,30,31,31,30,31,30,31};
 
 // int IsLeap(int year)
 // {
@@ -693,13 +683,13 @@
 //         }
 //         d=d+day;
 //     }
-//     else 
+//     else
 //     {
 //         for(i=0;i<month-1;i++)
 //         {
 //             d=d+a[i];
 //         }
-//         d=d+day;   
+//         d=d+day;
 //     }
 //     return d;
 // }
@@ -773,14 +763,13 @@
 //     return 0;
 // }
 
-
-//计算定积分
-// #include <stdio.h>
-// #define EPS 1e-3
+// 计算定积分
+//  #include <stdio.h>
+//  #define EPS 1e-3
 
 // float y(float x)
 // {
-//     return x*x+1; 
+//     return x*x+1;
 // }
 
 // float Integeral(float(*f)(float),float a,float b)
@@ -805,36 +794,34 @@
 //     return 0;
 // }
 
+// 输出输入字符串中单词个数
+//  #include <stdio.h>
+//  #include <ctype.h>
+//  #define N 50
+//  int main(void)
+//  {
+//      char str[N];
+//      int i,cnt;
+//      cnt=0;
+//      printf("Input:");
+//      gets(str);
+//      for(i=0;str[i]!='\0';i++)
+//      {
+//          if(isspace(str[i]))
+//          {
+//              if(isalpha(str[i+1]))
+//              {
+//                  cnt++;
+//              }
+//          }
+//      }
+//      printf("result:%d",cnt);
+//      return 0;
+//  }
 
-//输出输入字符串中单词个数
-// #include <stdio.h>
-// #include <ctype.h>
-// #define N 50
-// int main(void)
-// {
-//     char str[N];
-//     int i,cnt;
-//     cnt=0;
-//     printf("Input:");
-//     gets(str);
-//     for(i=0;str[i]!='\0';i++)
-//     {
-//         if(isspace(str[i]))
-//         {
-//             if(isalpha(str[i+1]))
-//             {
-//                 cnt++;
-//             }
-//         }
-//     }
-//     printf("result:%d",cnt);
-//     return 0;
-// }
-
-
-//删去某一字符串中特定的字符
-// #include <stdio.h>
-// #define N 50
+// 删去某一字符串中特定的字符
+//  #include <stdio.h>
+//  #define N 50
 
 // void CutStr(char str[],char c)           //以数组为函数参数
 // {
@@ -880,11 +867,10 @@
 //     return 0;
 // }
 
-
-//在每个字符间插入一个空格
-// #include <stdio.h>
-// #include <string.h>
-// #define N 50
+// 在每个字符间插入一个空格
+//  #include <stdio.h>
+//  #include <string.h>
+//  #define N 50
 
 // // void SpaceStr(char str[])           //以数组为函数参数
 // // {
@@ -932,11 +918,10 @@
 //     return 0;
 // }
 
-
-//逆序输出字符串
-// #include <stdio.h>
-// #include <string.h>
-// #define N 50
+// 逆序输出字符串
+//  #include <stdio.h>
+//  #include <string.h>
+//  #define N 50
 
 // void Reverse(char *dst,char *src)           //以指针为函数参数
 // {
@@ -978,12 +963,11 @@
 //     return 0;
 // }
 
-
-//按照字典顺序对国家名进行排序
-// #include <stdio.h>
-// #include <string.h>
-// #define N 150
-// #define M 10
+// 按照字典顺序对国家名进行排序
+//  #include <stdio.h>
+//  #include <string.h>
+//  #define N 150
+//  #define M 10
 
 // void SortString(char str[][M],int n)
 // {
@@ -1024,12 +1008,11 @@
 //     return 0;
 // }
 
-
-//查找星期表
-// #include <stdio.h>
-// #include <string.h>
-// #define R 7
-// #define C 10
+// 查找星期表
+//  #include <stdio.h>
+//  #include <string.h>
+//  #define R 7
+//  #define C 10
 
 // int DaySearch(char day[],int *pr)
 // {
@@ -1059,17 +1042,16 @@
 //     {
 //         printf("The day's number is %d.\n",r);
 //     }
-//     else 
+//     else
 //     {
 //         printf("Input erorr!\n");
 //     }
 //     return 0;
 // }
 
-
-//打印【1900，2099】间任一年的一月的星期表
-// #include <stdio.h>
-// #include <stdlib.h>
+// 打印【1900，2099】间任一年的一月的星期表
+//  #include <stdio.h>
+//  #include <stdlib.h>
 
 // int a[12]={31,29,31,30,31,30,31,31,30,31,30,31};
 // int b[12]={31,28,31,30,31,30,31,31,30,31,30,31};
@@ -1174,12 +1156,11 @@
 //     return 0;
 // }
 
-
-//Pell数列
-// #include <stdio.h>
-// #define N 1000000
-// #define M 32767
-// int p[N+1]={0};
+// Pell数列
+//  #include <stdio.h>
+//  #define N 1000000
+//  #define M 32767
+//  int p[N+1]={0};
 
 // void PellMod(int k)     //关键：(a+-b)%c=(a%c+-b%c)%c和(a*b)%c=(a%c*b%c)%c
 // {
@@ -1205,11 +1186,10 @@
 //     return 0;
 // }
 
-
-//计算转置矩阵
-// #include <stdio.h>
-// #define N 100
-// #define M 100
+// 计算转置矩阵
+//  #include <stdio.h>
+//  #define N 100
+//  #define M 100
 
 // void Transpose(int (*p)[N],int (*at)[M],int m,int n)    //行指针
 // {
@@ -1274,10 +1254,9 @@
 //     return 0;
 // }
 
-
-//动态数组输出最高分
-// #include <stdio.h>
-// #include <stdlib.h>
+// 动态数组输出最高分
+//  #include <stdio.h>
+//  #include <stdlib.h>
 
 // void MaxScore(int *p,int m,int n)
 // {
@@ -1297,7 +1276,7 @@
 //         {
 //             if(p[i*n+j]>max)
 //             {
-//                 max=p[i*n+j]; 
+//                 max=p[i*n+j];
 //             }
 //         }
 //     }
@@ -1310,7 +1289,7 @@
 //                 printf("%d班第%d个学生,分数为:%d\n",i+1,j+1,max);
 //             }
 //         }
-//     } 
+//     }
 // }
 
 // int main(int argc, char *argv[])
@@ -1332,16 +1311,15 @@
 //     return 0;
 // }
 
-
-//模拟扑克洗牌发牌
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// #include <time.h>
-// #define N 10
-// #define M 52
-// #define A 4
-// #define B 13
+// 模拟扑克洗牌发牌
+//  #include <stdio.h>
+//  #include <stdlib.h>
+//  #include <string.h>
+//  #include <time.h>
+//  #define N 10
+//  #define M 52
+//  #define A 4
+//  #define B 13
 
 // typedef struct poker{
 //     char suit[N];
@@ -1384,7 +1362,7 @@
 //             strcpy(card[x].suit,card[y].suit);
 //             strcpy(card[x].face,card[y].face);
 //         }
-//         else 
+//         else
 //         {
 //             continue;
 //         }
@@ -1450,7 +1428,6 @@
 //     return 0;
 // }
 
-
 // 模拟投票
 // #include <stdio.h>
 // #include <string.h>
@@ -1487,14 +1464,13 @@
 //     return 0;
 // }
 
-
-//大数相加
-// #include <stdio.h>
-// #include <stdlib.h>
-// #define N 50
+// 大数相加
+//  #include <stdio.h>
+//  #include <stdlib.h>
+//  #define N 50
 
 // int ReadNumber(int* p)
-// {   
+// {
 //     int t[N]={0};
 //     char ch;
 //     int i=0,len=0;
@@ -1531,7 +1507,7 @@
 //         {
 //             flag=1;
 //             return i+1;
-//         }    
+//         }
 //     }
 //     if(flag==0)
 //     {
@@ -1540,7 +1516,7 @@
 // }
 
 // int main(void)
-// {   
+// {
 //     int n,x,y;
 //     int a[N]={0};
 //     int b[N]={0};
@@ -1556,12 +1532,11 @@
 //     return 0;
 // }
 
-
-//字符串数字提取
-// #include <stdio.h>
-// #include <ctype.h>
-// #include <stdlib.h>
-// #define N 100
+// 字符串数字提取
+//  #include <stdio.h>
+//  #include <ctype.h>
+//  #include <stdlib.h>
+//  #define N 100
 
 // int main(void)
 // {
@@ -1586,18 +1561,17 @@
 //     return 0;
 // }
 
-
-//使用栈的顺序结构实现逆波兰表达式的计算
-// #include <stdio.h>
-// #include <string.h>
-// #include <ctype.h>
-// #include <stdlib.h>
-// #define INT 1
-// #define FlT 2
-// #define N 20
+// 使用栈的顺序结构实现逆波兰表达式的计算
+//  #include <stdio.h>
+//  #include <string.h>
+//  #include <ctype.h>
+//  #include <stdlib.h>
+//  #define INT 1
+//  #define FlT 2
+//  #define N 20
 
 // typedef struct node
-// {  
+// {
 //    int type;
 //    union
 //    {
@@ -1623,7 +1597,7 @@
 //    int i;
 //    STACK stack;
 //    stack.top=0;    //初始化栈顶
-    
+
 //    while(scanf("%s",word)==1&&word[0]!='#')    //以空格为分隔符输入逆波兰表达式，以#结束
 //    {
 //          if(isdigit(word[0]))    //若为数字，则转化为整形后压栈
@@ -1770,37 +1744,37 @@
 //     return res;
 // }
 
-
-//记账系统
+// 记账系统
 #include <stdio.h>
 #include <string.h>
 #define N 10
 
-typedef struct{
+typedef struct
+{
     int ID;
     char Username[N];
     int income;
     int expense;
-}Acount;
+} Acount;
 
 int EmptyRecord(Acount acount[]);
 int InputRecord(Acount acount[]);
-void SortRecord(Acount acount[],int n);
-void SearchRecord(Acount acount[],int n);
-void AverageRecord(Acount acount[],int n,float* averincome,float* averexpense);
-void LargerRecord(Acount acount[],int n,float averexpense);
-void OutputRecord(Acount acount[],int n);
-void WrintFile(Acount acount[],int n);
-int ReadFile(Acount acount[],FILE* fp);
+void SortRecord(Acount acount[], int n);
+void SearchRecord(Acount acount[], int n);
+void AverageRecord(Acount acount[], int n, float *averincome, float *averexpense);
+void LargerRecord(Acount acount[], int n, float averexpense);
+void OutputRecord(Acount acount[], int n);
+void WrintFile(Acount acount[], int n);
+int ReadFile(Acount acount[], FILE *fp);
 
 int main(void)
 {
-    Acount acount[N]={0};
+    Acount acount[N] = {0};
     char str[N];
     float averincome;
     float averexpense;
-    FILE* fp;
-    int flag,n;
+    FILE *fp;
+    int flag, n;
     do
     {
         printf("1.Input record\n");
@@ -1813,258 +1787,258 @@ int main(void)
         printf("8.Read from file\n");
         printf("0.Exit\n");
         printf("Please enter your choice:");
-        scanf("%d",&flag);
-        switch(flag)
+        scanf("%d", &flag);
+        switch (flag)
         {
-            case 0:
+        case 0:
+            break;
+        case 1:
+            n = InputRecord(acount);
+            break;
+        case 2:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 1:
-                n=InputRecord(acount);
+            }
+            SortRecord(acount, n);
+            break;
+        case 3:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 2:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                SortRecord(acount,n);
+            }
+            SearchRecord(acount, n);
+            break;
+        case 4:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 3:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                SearchRecord(acount,n);
+            }
+            AverageRecord(acount, n, &averincome, &averexpense);
+            printf("Per capita income:%.2f\n", averincome);
+            printf("Per capita expenses:%.2f\n", averexpense);
+            break;
+        case 5:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 4:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                AverageRecord(acount,n,&averincome,&averexpense);
-                printf("Per capita income:%.2f\n",averincome);
-                printf("Per capita expenses:%.2f\n",averexpense);
+            }
+            LargerRecord(acount, n, averexpense);
+            break;
+        case 6:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 5:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                LargerRecord(acount,n,averexpense);
+            }
+            OutputRecord(acount, n);
+            break;
+        case 7:
+            if (!EmptyRecord(acount))
+            {
                 break;
-            case 6:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                OutputRecord(acount,n);
+            }
+            WrintFile(acount, n);
+            break;
+        case 8:
+            printf("Please input the file name:");
+            scanf("%s", str);
+            fp = fopen(str, "r");
+            if (fp == NULL)
+            {
+                printf("Cannot find this file!\n");
                 break;
-            case 7:
-                if(!EmptyRecord(acount))
-                {
-                    break;
-                }
-                WrintFile(acount,n);
-                break;
-            case 8:
-                printf("Please input the file name:");
-                scanf("%s",str);
-                fp=fopen(str,"r");
-                if(fp==NULL)
-                {
-                    printf("Cannot find this file!\n");
-                    break;
-                }
-                n=ReadFile(acount,fp);
-                break;
-            default:
-                printf("Input Error!\n");
-                break;
+            }
+            n = ReadFile(acount, fp);
+            break;
+        default:
+            printf("Input Error!\n");
+            break;
         }
         printf("\n");
-    } while (flag!=0);
+    } while (flag != 0);
     return 0;
 }
 
 int EmptyRecord(Acount acount[])
 {
-    int flag=1;
-    if(acount[0].ID==0)
+    int flag = 1;
+    if (acount[0].ID == 0)
     {
         printf("There is no data yet. Please choose 1 or 8 to input the data first.\n");
-        flag=0;
+        flag = 0;
     }
     return flag;
 }
 
 int InputRecord(Acount acount[])
 {
-    int i,n;
+    int i, n;
     printf("Input the total of people:");
-    scanf("%d",&n);
-    while(n<=0||n>=10)
+    scanf("%d", &n);
+    while (n <= 0 || n >= 10)
     {
-        if(n>=10)
+        if (n >= 10)
         {
-            printf("The system can only store the information of 10 people at most. Please re-enter.\n");           
+            printf("The system can only store the information of 10 people at most. Please re-enter.\n");
         }
         else
         {
             printf("The system can only store the information of 1 people at least. Please re-enter.\n");
         }
         printf("\nInput the total of people:");
-        scanf("%d",&n);
+        scanf("%d", &n);
     }
     printf("Please input user's ID, name, income and expenses: (format as:10001 Cindy 6000 1500)\n");
-    for(i=0;i<n;i++)
+    for (i = 0; i < n; i++)
     {
-        scanf("%d",&acount[i].ID);
-        scanf(" %s",acount[i].Username);
-        scanf("%d",&acount[i].income);
-        scanf("%d",&acount[i].expense);
+        scanf("%d", &acount[i].ID);
+        scanf(" %s", acount[i].Username);
+        scanf("%d", &acount[i].income);
+        scanf("%d", &acount[i].expense);
     }
     return n;
 }
 
-void SortRecord(Acount acount[],int n)
+void SortRecord(Acount acount[], int n)
 {
-    Acount* pstr[N]={NULL};
+    Acount *pstr[N] = {NULL};
     Acount t;
-    int i,j;
-    for(i=0;i<n;i++)
+    int i, j;
+    for (i = 0; i < n; i++)
     {
-        pstr[i]=&acount[i];
+        pstr[i] = &acount[i];
     }
-    for(i=0;i<n-1;i++)
+    for (i = 0; i < n - 1; i++)
     {
-        for(j=i+1;j<n;j++)
+        for (j = i + 1; j < n; j++)
         {
-            if(strcmp(pstr[i]->Username,pstr[j]->Username)<=0)
+            if (strcmp(pstr[i]->Username, pstr[j]->Username) <= 0)
             {
-                t=*pstr[i];
-                *pstr[i]=*pstr[j];
-                *pstr[j]=t;
+                t = *pstr[i];
+                *pstr[i] = *pstr[j];
+                *pstr[j] = t;
             }
         }
     }
     printf("ID\tUserName\tIncome\tExpenses\t\n");
-    for(i=0;i<n;i++)
+    for (i = 0; i < n; i++)
     {
-        printf("%d\t%s\t\t%d\t%d\t\n",pstr[i]->ID,pstr[i]->Username,pstr[i]->income,pstr[i]->expense);
+        printf("%d\t%s\t\t%d\t%d\t\n", pstr[i]->ID, pstr[i]->Username, pstr[i]->income, pstr[i]->expense);
     }
 }
 
-void SearchRecord(Acount acount[],int n)
+void SearchRecord(Acount acount[], int n)
 {
-    char name[N]={0};
-    int i,find=0;
+    char name[N] = {0};
+    int i, find = 0;
     printf("Please input the user name:");
-    scanf(" %s",name);
-    for(i=0;i<n;i++)
+    scanf(" %s", name);
+    for (i = 0; i < n; i++)
     {
-        if(strcmp(acount[i].Username,name)==0)
+        if (strcmp(acount[i].Username, name) == 0)
         {
             printf("ID\tUserName\tIncome\tExpenses\t\n");
-            printf("%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
-            find=1;
+            printf("%d\t%s\t\t%d\t%d\t\n", acount[i].ID, acount[i].Username, acount[i].income, acount[i].expense);
+            find = 1;
         }
     }
-    if(!find)
+    if (!find)
     {
         printf("Not Found!\n");
     }
 }
 
-void AverageRecord(Acount acount[],int n,float* averincome,float* averexpense)
+void AverageRecord(Acount acount[], int n, float *averincome, float *averexpense)
 {
-    float sum1=0,sum2=0;
+    float sum1 = 0, sum2 = 0;
     int i;
-    for(i=0;i<n;i++)
+    for (i = 0; i < n; i++)
     {
-        sum1=sum1+(float)acount[i].income;
-        sum2=sum2+(float)acount[i].expense;
+        sum1 = sum1 + (float)acount[i].income;
+        sum2 = sum2 + (float)acount[i].expense;
     }
-    *averincome=sum1/n;
-    *averexpense=sum2/n;
+    *averincome = sum1 / n;
+    *averexpense = sum2 / n;
 }
 
-void LargerRecord(Acount acount[],int n,float averexpense)
+void LargerRecord(Acount acount[], int n, float averexpense)
 {
     int i;
     printf("ID\tUserName\tIncome\tExpenses\t\n");
-    for(i=0;i<n;i++)
+    for (i = 0; i < n; i++)
     {
-        if(acount[i].expense>averexpense)
-        {          
-            printf("%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+        if (acount[i].expense > averexpense)
+        {
+            printf("%d\t%s\t\t%d\t%d\t\n", acount[i].ID, acount[i].Username, acount[i].income, acount[i].expense);
         }
     }
 }
 
-void OutputRecord(Acount acount[],int n)
+void OutputRecord(Acount acount[], int n)
 {
-    Acount* pstr[N]={NULL};
+    Acount *pstr[N] = {NULL};
     Acount t;
-    int i,j;
-    for(i=0;i<n;i++)
+    int i, j;
+    for (i = 0; i < n; i++)
     {
-        pstr[i]=&acount[i];
+        pstr[i] = &acount[i];
     }
-    for(i=0;i<n-1;i++)
+    for (i = 0; i < n - 1; i++)
     {
-        for(j=i+1;j<n;j++)
+        for (j = i + 1; j < n; j++)
         {
-            if(pstr[i]->ID>=pstr[j]->ID)
+            if (pstr[i]->ID >= pstr[j]->ID)
             {
-                t=*pstr[i];
-                *pstr[i]=*pstr[j];
-                *pstr[j]=t;
+                t = *pstr[i];
+                *pstr[i] = *pstr[j];
+                *pstr[j] = t;
             }
         }
     }
     printf("ID\tUserName\tIncome\tExpenses\t\n");
-    for(i=0;i<n;i++)
+    for (i = 0; i < n; i++)
     {
-        printf("%d\t%s\t\t%d\t%d\t\n",pstr[i]->ID,pstr[i]->Username,pstr[i]->income,pstr[i]->expense);
+        printf("%d\t%s\t\t%d\t%d\t\n", pstr[i]->ID, pstr[i]->Username, pstr[i]->income, pstr[i]->expense);
     }
 }
 
-void WrintFile(Acount acount[],int n)
+void WrintFile(Acount acount[], int n)
 {
     char str[N];
-    FILE* fp;
+    FILE *fp;
     int i;
     printf("Please input the file name:");
-    scanf("%s",str);
-    fp=fopen(str,"w");
-    fprintf(fp,"ID\tUserName\tIncome\tExpenses\n");
-    for(i=0;i<n;i++)
+    scanf("%s", str);
+    fp = fopen(str, "w");
+    fprintf(fp, "ID\tUserName\tIncome\tExpenses\n");
+    for (i = 0; i < n; i++)
     {
-        fprintf(fp,"%d\t%s\t\t%d\t\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+        fprintf(fp, "%d\t%s\t\t%d\t\t%d\t\n", acount[i].ID, acount[i].Username, acount[i].income, acount[i].expense);
     }
     printf("Save Successfully!\n");
     fclose(fp);
 }
 
-int ReadFile(Acount acount[],FILE* fp)
+int ReadFile(Acount acount[], FILE *fp)
 {
-    char temp[4][N]={0};
-    int i,t;
-    for(i=0;i<4;i++)
+    char temp[4][N] = {0};
+    int i, t;
+    for (i = 0; i < 4; i++)
     {
-        fscanf(fp,"%s",&temp[i][N]);
+        fscanf(fp, "%s", &temp[i][N]);
     }
-    for(i=0;!feof(fp);i++)
+    for (i = 0; !feof(fp); i++)
     {
-        fscanf(fp,"%d",&acount[i].ID);
-        fscanf(fp,"%s",acount[i].Username);
-        fscanf(fp,"%d",&acount[i].income);
-        fscanf(fp,"%d",&acount[i].expense);
+        fscanf(fp, "%d", &acount[i].ID);
+        fscanf(fp, "%s", acount[i].Username);
+        fscanf(fp, "%d", &acount[i].income);
+        fscanf(fp, "%d", &acount[i].expense);
     }
-    t=i-1;
+    t = i - 1;
     printf("ID\tUserName\tIncome\tExpenses\t\n");
-    for(i=0;i<t;i++)
+    for (i = 0; i < t; i++)
     {
-        printf("%d\t%s\t\t%d\t%d\t\n",acount[i].ID,acount[i].Username,acount[i].income,acount[i].expense);
+        printf("%d\t%s\t\t%d\t%d\t\n", acount[i].ID, acount[i].Username, acount[i].income, acount[i].expense);
     }
     fclose(fp);
     return i;
