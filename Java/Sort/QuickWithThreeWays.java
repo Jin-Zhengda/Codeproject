@@ -1,4 +1,6 @@
 package Sort;
+import edu.princeton.cs.algs4.StdRandom;
+
 //三向切分的快速排序
 public class QuickWithThreeWays implements Sort{
     public void sort(int[] a) {
@@ -15,11 +17,10 @@ public class QuickWithThreeWays implements Sort{
         int gt = hi;
         int v = a[lo];
         while (i < gt) {
-            int cmp = a[i].compareTo(v);
-            if (cmp < 0) {
+            if (a[i] < v) {
                 exch(a, lt++, i++);
             }
-            else if (cmp > 0) {
+            else if (a[i] > v) {
                 exch(a, i, gt--);
             }
             else {

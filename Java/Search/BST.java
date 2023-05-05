@@ -1,9 +1,7 @@
 package Search;
 
-import java.sql.RowId;
-
 //Binary Search Tree
-public class BST<Key> {
+public class BST<Key extends Comparable<Key>> {
     private Key key;
     private BST<Key> left;
     private BST<Key> right;
@@ -18,15 +16,15 @@ public class BST<Key> {
         this.key = key;
     }
 
-    public static BST find(BST T, Key sk) {
+    public BST<Key> find(BST<Key> T, Key sk) {
         if (T == null) {
             return null;
         }
         if (sk.equals(T.key)) {
             return T;
-        } else if (sk < T.key) {
+        } else if (sk.compareTo(T.key) < 0) {
             return find(T.left, sk);
-        } else (sk > T.key) {
+        } else {
             return find(T.right, sk);
         }
     }

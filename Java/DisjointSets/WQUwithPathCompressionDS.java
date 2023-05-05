@@ -1,5 +1,6 @@
 package DisjointSets;
-
+/* 
+ */
 public class WQUwithPathCompressionDS implements DisjointSets {
     private int[] id;
 
