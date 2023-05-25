@@ -4,10 +4,19 @@ package Sort;
 //O(N*logN)
 public class MergeTD implements Sort {
     private int[] aux;
+    private int count;
+
+    public MergeTD() {
+        count = 0;
+    }
+
+    public int getCount() {
+        return count;
+    }
 
     private void merge(int[] a, int lo, int mid, int hi) {
         int i = lo;
-        int j = hi;
+        int j = mid + 1;
 
         for (int k = lo; k <= hi; k++) {
             aux[k] = a[k];
@@ -20,6 +29,7 @@ public class MergeTD implements Sort {
                 a[k] = aux[i++];
             } else if (less(aux[j], aux[i])) {
                 a[k] = aux[j++];
+                count += (mid - i + 1);
             } else {
                 a[k] = aux[i++];
             }
