@@ -4,5 +4,6 @@
         "lib/**/*.jar",
         "d:\\Download\\Princeton Standed libraries\\algs4.jar",
         "d:\\Download\\PrincetonStandedLibraries\\algs4.jar"
-    ]
+    ],
+    "C_Cpp.default.compilerPath": "D:\\Scoop\\apps\\mingw\\current\\bin\\gcc.exe"
 }
