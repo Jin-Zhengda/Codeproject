@@ -1,16 +1,14 @@
 {
-    "configurations": [
-        {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ]
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "compilerPath": "D:\\Scoop\\apps\\mingw\\current\\bin\\g++.exe",
+      "cppStandard": "c++23",
+      "includePath": [
+        "${{workspaceFolder}}/**"
+      ],
+      "intelliSenseMode": "windows-gcc-x64",
+      "name": "Win32"
+    }
+  ],
+  "version": 4
 }
