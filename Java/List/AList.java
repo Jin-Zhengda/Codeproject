@@ -52,4 +52,8 @@ public class AList<Item> {
         size--;
         return last;
     }
+
+    public static void main(String args[]) {
+        
+    }
 }
