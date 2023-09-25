@@ -89,5 +89,15 @@
         "d:\\WorkSpace\\IDEA\\library-sp23\\xmlresolver-4.4.3.jar",
         "d:\\WorkSpace\\IDEA\\library-sp23\\xmlresolver-4.4.3-data.jar"
     ],
-    "C_Cpp.default.compilerPath": "D:\\Scoop\\apps\\mingw\\current\\bin\\gcc.exe"
+    "C_Cpp.default.compilerPath": "D:\\Scoop\\apps\\mingw\\current\\bin\\gcc.exe",
+    "files.associations": {
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "memory": "cpp",
+        "istream": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
 }

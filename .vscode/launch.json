@@ -1,6 +1,13 @@
 {
   "configurations": [
     {
+      "type": "java",
+      "name": "NumsMedian",
+      "request": "launch",
+      "mainClass": "NumsMedian",
+      "projectName": "Codeproject_5f24c0d9"
+    },
+    {
       "MIMode": "gdb",
       "args": [],
       "cwd": "${fileDirname}",
