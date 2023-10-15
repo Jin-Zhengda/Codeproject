@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 /*  
@@ -19,12 +20,16 @@ Primary:
 Number:
     floating-point-literal
 */
-
+constexpr char number {'8'};
+constexpr char quit {'q'};
+constexpr char print {';'};
+constexpr char prompt {'>'};
+constexpr char result {'='};
 
 class Token {
 public:
     int kind;
-    int value;
+    double value;
 };
 
 class Token_stream {
@@ -40,29 +45,37 @@ class Token_stream {
 double expression();
 double term();
 double primary();
-Token get_Token();
 
 Token_stream ts;
 
 int main(void) {
     double val = 0;
+    cout << "Welcome to our simple calculator.\n";
+    cout << "Please enter an expression, or q to quit.\n";
     try {
         while (cin) {
+            cout << prompt;
             Token t = ts.get();
 
-            if (t.kind == 'q') {
-                break;
+            while (t.kind == print) {
+                t = ts.get();
             }
-            if (t.kind == ':') {
-                cout << '=' << '\n';
-            } else {
-                ts.putback(t);
+            if (t.kind == quit) {
+                return 0;
             }
-            val = expression();
+            ts.putback(t);
+            cout << result << expression() << '\n';
+            
         }
     }
     catch(exception &e) {
         cerr << e.what() << '\n';
+        cout << "Please enter the character '~' close the window.\n";
+        for(char ch; cin >> ch; ) {
+            if (ch == '~') {
+                return 1;
+            }
+        }
         return 1;
     }
     return 0;
@@ -96,23 +109,32 @@ double term() {
     Token t = ts.get();
 
     while(true) {
-        switch (t.kind)
-        {
-        case '*':
-            left *= primary();
-            t = ts.get();
-            break;
-        case '/':
-            double d = primary();
-            if (d == 0) {
-                throw runtime_error("divide by zero");
+        switch (t.kind){
+            case '*':
+                left *= primary();
+                t = ts.get();
+                break;
+            case '/':{
+                double d = primary();
+                if (d == 0) {
+                    throw runtime_error("divide by zero");
+                }
+                left /= primary();
+                t = ts.get();
+                break;
             }
-            left /= primary();
-            t = ts.get();
-            break;
-        default:
-            ts.putback(t);
-            return left;
+            case '%':{
+                double d = primary();
+                if (d == 0) {
+                    throw runtime_error("mod by zero");
+                }
+                left  = fmod(left, d);
+                t = ts.get();
+                break;
+            }
+            default:
+                ts.putback(t);
+                return left;
         }
     }
 }
@@ -122,24 +144,23 @@ double primary() {
     Token t = ts.get();
 
     switch (t.kind) {
-    case '(':
-        double d = expression();
-        t = ts.get();
-        if (t.kind != ')') {
-            throw runtime_error("() do not match");
+        case '(': {
+            double d = expression();
+            t = ts.get();
+            if (t.kind != ')') {
+                throw runtime_error("() do not match");
+            }
+            return d;
         }
-        return d;
-        break;
-    case '8':
-        return t.value;
-        break;
-    default:
-        throw runtime_error("expected primary");
+        case number:   
+            return t.value;
+        case '-':
+            return -primary();
+        case '+':
+            return primary();
+        default:
+            throw runtime_error("expected primary");
     }
-}
-
-Token get_Token() {
-
 }
 
 void Token_stream::putback(Token t) {
@@ -172,9 +193,9 @@ Token Token_stream::get() {
         cin.putback(ch);
         double val;
         cin >> val;
-        return Token('8', val);
+        return Token{'8', val};
     } 
     default:
         throw runtime_error("Bad Token");
     }
-}
+}     

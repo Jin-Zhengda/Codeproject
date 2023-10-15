@@ -97,7 +97,8 @@
         "istream": "cpp",
         "functional": "cpp",
         "tuple": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "iostream": "cpp"
     },
     "java.compile.nullAnalysis.mode": "automatic"
 }
