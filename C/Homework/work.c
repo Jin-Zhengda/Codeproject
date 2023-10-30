@@ -918,7 +918,7 @@
 //     return 0;
 // }
 
-// 逆序输出字符串
+// //逆序输出字符串
 //  #include <stdio.h>
 //  #include <string.h>
 //  #define N 50
@@ -1049,7 +1049,7 @@
 //     return 0;
 // }
 
-// 打印【1900，2099】间任一年的一月的星期表
+// //打印【1900，2099】间任一年的一月的星期表
 //  #include <stdio.h>
 //  #include <stdlib.h>
 
@@ -1154,7 +1154,7 @@
 //     printf("Sun\tMon\tTue\tWed\tThu\tFri\tSat\n");
 //     PrintMonth(year,month);
 //     return 0;
-// }
+//}
 
 // Pell数列
 //  #include <stdio.h>

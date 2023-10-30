@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "coinChange",
+      "request": "launch",
+      "mainClass": "coinChange",
+      "projectName": "Codeproject_5f24c0d9"
+    },
+    {
+      "type": "java",
       "name": "NumsMedian",
       "request": "launch",
       "mainClass": "NumsMedian",
