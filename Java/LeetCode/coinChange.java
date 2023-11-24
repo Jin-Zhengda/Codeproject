@@ -5,7 +5,7 @@
 package LeetCode;
 import java.util.*;
 
-public class coinChange1 {
+public class coinChange {
     //类似无限背包问题
     //使用二维数组，dp[i][j]为前i个硬币兑换j大小面值所需的最少硬币数
     public static int minCoinNums1(int[] coins, int amount) {
