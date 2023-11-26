@@ -21,8 +21,8 @@ module calculate (
     reg [2:0] next_state;
     reg [1:0] out ;
 
-    always @(posedge clk or negedge rst_n) begin
-        if(~rst_n) current_state <= IDLE;
+    always @(posedge clk or negedge rst) begin
+        if(rst) current_state <= IDLE;
         else       current_state <= next_state;
     end
 

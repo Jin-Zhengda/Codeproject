@@ -63,22 +63,22 @@ always @(posedge clk, posedge rst) begin
     if (rst == 1) begin
         keyboard_num <= 0;   
     end else if (key_posedge) begin
-		if (key_posedge[0]) keyboard_num <= 'hd;
-		else if (key_posedge[1]) keyboard_num <= 'hc;
-		else if (key_posedge[2]) keyboard_num <= 'hb;
-		else if (key_posedge[3]) keyboard_num <= 'ha;
-		else if (key_posedge[4]) keyboard_num <= 'hf;
-		else if (key_posedge[5]) keyboard_num <= 'h9;
-		else if (key_posedge[6]) keyboard_num <= 'h6;
-		else if (key_posedge[7]) keyboard_num <= 'h3;
-		else if (key_posedge[8]) keyboard_num <= 'h0;
-		else if (key_posedge[9]) keyboard_num <= 'h8;
-		else if (key_posedge[10]) keyboard_num <= 'h5;
-		else if (key_posedge[11]) keyboard_num <= 'h2;
-		else if (key_posedge[12]) keyboard_num <= 'he;
-		else if (key_posedge[13]) keyboard_num <= 'h7;
-		else if (key_posedge[14]) keyboard_num <= 'h4;
-		else if (key_posedge[15]) keyboard_num <= 'h1;
+		if (key_posedge[0]) keyboard_num <= 4'hd;
+		else if (key_posedge[1]) keyboard_num <= 4'hc;
+		else if (key_posedge[2]) keyboard_num <= 4'hb;
+		else if (key_posedge[3]) keyboard_num <= 4'ha;
+		else if (key_posedge[4]) keyboard_num <= 4'hf;
+		else if (key_posedge[5]) keyboard_num <= 4'h9;
+		else if (key_posedge[6]) keyboard_num <= 4'h6;
+		else if (key_posedge[7]) keyboard_num <= 4'h3;
+		else if (key_posedge[8]) keyboard_num <= 4'h0;
+		else if (key_posedge[9]) keyboard_num <= 4'h8;
+		else if (key_posedge[10]) keyboard_num <= 4'h5;
+		else if (key_posedge[11]) keyboard_num <= 4'h2;
+		else if (key_posedge[12]) keyboard_num <= 4'he;
+		else if (key_posedge[13]) keyboard_num <= 4'h7;
+		else if (key_posedge[14]) keyboard_num <= 4'h4;
+		else if (key_posedge[15]) keyboard_num <= 4'h1;
 	end else begin
 		keyboard_num <= keyboard_num;
 	end
