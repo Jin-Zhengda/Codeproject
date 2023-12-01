@@ -27,9 +27,10 @@ module top(
     output [3:0]  col,
     output        keyboard_en,
     output [15:0] keyboard_led,
-    output [3:0]  keyboard_num,
-    output [7:0] led_en,
-    output [7:0] led_cx
+//    output [3:0]  keyboard_num,
+    output [7:0]  led_en,
+    output [7:0]  led_cx,
+    output pass_led
 );
 
 keyboard u_keyboard(
@@ -39,9 +40,10 @@ keyboard u_keyboard(
     .col(col), 
     .keyboard_en(keyboard_en), 
     .keyboard_led(keyboard_led),   //按键DCBA#9630852*741对应GLD0-GLD7:YLD0-YLD7
-    .keyboard_num(keyboard_num),    // 因只亮一个周期，直接送到led显示将看不到灯亮
+//    .keyboard_num(keyboard_num),    // 因只亮一个周期，直接送到led显示将看不到灯亮
     .led_en(led_en),
-    .led_cx(led_cx)
+    .led_cx(led_cx),
+    .pass_led(pass_led)
 );
 
 

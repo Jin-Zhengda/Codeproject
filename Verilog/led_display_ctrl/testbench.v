@@ -26,22 +26,19 @@ module testbench(
         button1 = 0; button2 = 0;button3 = 0;
         #5 begin button1 = 1;end
         #5 begin button1 = 0;end
-        #5 begin button3 = 1;button2 = 1;end
-        #1 begin button2 = 0;end
-        #1 begin button2 = 1;end
-        #1 begin button2 = 0;end
-        #1 begin button2 = 1;end
-        #1 begin button3 = 0;button2 = 0;end
-        #2 begin button2 = 1;end
-        #2 begin button2 = 0;end
-        #2 begin button2 = 1;end
-        #10 begin button2 = 0;end
-        #34 begin button3 = 1;end
-        #5 begin button3 = 0;end
-        #20 begin button3 = 1;end
-        #5 begin button3 = 0;end
-        #220 begin button3 = 1;end
-        #5 begin button3 = 0;end
+        #5 begin button2 = 1;button3 = 1;end
+        #1 begin button3 = 0;end
+        #1 begin button3 = 1;end
+        #1 begin button3 = 0;end
+        #1 begin button3 = 1;end
+        #1 begin button3 = 0;end
+        #2 begin button3 = 1;end
+        #2 begin button3 = 0;end
+        #2 begin button3 = 1;end
+        #10 begin button3 = 0;button2 = 0;end
+        #600;
+        #400 begin button2 = 1;end
+        #5 begin button2 = 0;end
         #25 $finish;
     end
     

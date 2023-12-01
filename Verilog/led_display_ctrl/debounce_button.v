@@ -22,11 +22,14 @@ module debounce_button(
                 if (key_last == key_now) begin
                     key_now <= key;
                     key_last <= key_now;
+                    key_pulse <= 0;
                     cnt <= 32'd1;
                 end
                 else begin
-                    if (cnt >= 32d'1500000) begin
-                        key_pulse <= 
+                    if (cnt >= 32'd1500000) begin
+                        key_pulse <= key_now & ~key_last;
+                        key_now <= key;
+                        key_last <= key_now;
                     end
                     else
                         cnt <= cnt + 32'd1;

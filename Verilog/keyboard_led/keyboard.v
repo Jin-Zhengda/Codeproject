@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// gineer: 
 // 
 // Create Date: 2023/11/17 10:37:53
 // Design Name: 
@@ -28,13 +28,14 @@ module keyboard #(
     input  wire [3:0] row,           //读入行信号
     output reg  [3:0] col,           //输出列扫描信号
     output reg        keyboard_en,   //keyboard是否有按下,只有按下的时候按键值才有效，区分复位状态的0和实际按下编号为0的键
-    output reg  [3:0] keyboard_num,  //keyboard具体按下的数字,送到数码管,只维持一个周期
     output reg [15:0] keyboard_led,  //keyboard具体按下的数字,送到led
     output [7:0] led_en,
-    output [7:0] led_cx
+    output [7:0] led_cx,
+    output reg pass_led
 );
 
 wire cnt_end;
+reg  [3:0] keyboard_num;
 
 /********************************
  * 生成列扫描频率控制信号
@@ -118,7 +119,7 @@ always @(posedge clk, posedge reset) begin
 		else if (key_posedge[15]) keyboard_num <= 'h1;
 	end 
     else begin
-		keyboard_num <= 0;
+		keyboard_num <= keyboard_num;
 	end
 end
 
@@ -148,23 +149,7 @@ end
 
 wire en;
 
-password u_password(
-    .clk(clk),
-    .key_posedge(key_posedge),
-    .keyboard_num(keyboard_num),
-    .rst(reset),
-    .cnt_end(cnt_end),
-    .en(en)
-);
 
-led u_led(
-    .clk(clk),
-    .rst(reset),
-    .key_num(keyboard_num),
-    .en(en),
-    .led_en(led_en),
-    .led_cx(led_cx)
-);
 
 
 always @(posedge clk, posedge reset) begin
@@ -180,8 +165,40 @@ end
 always @(posedge clk, posedge reset) begin
     if (reset == 1)
         keyboard_led <= 0;
-    else if(en)
+    else if (en)
         keyboard_led <= key;
+    else
+        keyboard_led <= 0;
 end
+
+
+always@(*) begin
+    case(en)
+        1'b1: pass_led = 0;
+        1'b0: pass_led = 1;
+        1'bz: pass_led = 1;
+        default: pass_led = 1;
+    endcase
+end
+
+password u_password(
+    .clk(clk),
+    .keyboard_en(keyboard_en),
+    .keyboard_num(keyboard_num),
+    .rst(reset),
+    .en(en)
+);
+
+led u_led(
+    .clk(clk),
+    .rst(reset),
+    .keyboard_en(keyboard_en),
+    .key_num(keyboard_num),
+    .en(en),
+    .led_en(led_en),
+    .led_cx(led_cx)
+);
+
+
 
 endmodule

@@ -31,7 +31,7 @@ module led(
     end
     
     reg[31: 0] cnt;
-    wire cnt_end = cnt == 32'd200000;
+    wire cnt_end = cnt == 32'd20000;
     
     
     always @(posedge clk or negedge rst_n) begin
@@ -64,9 +64,7 @@ module led(
             8'b11111110: num = num8;
             default num = 4'd0;
         endcase
-    end
-
-    always @(*) begin
+        
         case(num)
             4'd0: cx = 8'b00000011;
             4'd1: cx = 8'b10011111;
@@ -81,5 +79,6 @@ module led(
             default cx = 8'b00011001;
         endcase
     end
+
 
 endmodule

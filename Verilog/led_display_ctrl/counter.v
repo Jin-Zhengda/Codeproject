@@ -11,6 +11,7 @@ module counter(
 
     debounce_button u_debounce_button(
         .clk(clk),
+        .button1(button1),
         .key(button3),
         .key_pulse(pos_edge)
     );

@@ -3,13 +3,16 @@
 module led ( 
     input wire clk,
     input wire rst,
-    input wire en,
+    input wire[15: 0] key_en,
+    input wire equal,
+    input wire[3: 0] keyboard_num,
     input wire[15: 0] out,
     output reg[7: 0] led_en,
     output reg[7: 0] led_cx
 );
 
     wire cnt_end;
+    reg flag;
 
     counter #(20000, 32) u_counter (
         .clk(clk),
@@ -17,38 +20,51 @@ module led (
         .cnt_inc(1),
         .cnt_end(cnt_end)
     );
+
     
     always @(posedge clk or posedge rst) begin
         if (rst) 
-            led_en <= 8'b01111111;
+            led_en <= 8'b11111110;
         else if (cnt_end)
-            led_en <= {en[4], en[7: 5], en[3: 0]};
+            led_en <= {led_en[0], led_en[7: 1]};
         else 
             led_en <= led_en;
     end
 
 
-    reg[3: 0] num1;
-    reg[3: 0] num2;
-    reg[3: 0] num3;
-    reg[3: 0] num4;
-
-    always @(*) begin
-        num1 = out / 16'd1000;
-        num2 = out / 16'd100 % 16'd10;
-        num3 = out / 16'd10 % 16'd10;
-        num4 = out % 16'd10;
+    reg[15: 0] mid_num1;
+    reg[15: 0] mid_num2;
+    
+    always @(posedge clk or posedge rst) begin
+        if (rst) mid_num1 <= 0;
+        else if (key_en) mid_num1 <= {mid_num1[11: 0], keyboard_num};
+        else mid_num1 <= mid_num1;
     end
+    
+    always @(*) begin
+        if (rst) mid_num2 = 0;
+        else begin
+            mid_num2[15: 12] = out / 16'd1000;
+            mid_num2[11: 8] = out / 16'd100 % 16'd10;
+            mid_num2[7: 4] = out / 16'd10 % 16'd10;
+            mid_num2[3: 0] = out % 16'd10;
+        end
+    end
+    
 
     reg[3: 0] num;
 
     always@(*) begin
-        case (en)
-            8'b01111111: num = num1;
-            8'b10111111: num = num2;
-            8'b11011111: num = num3;
-            8'b11101111: num = num4;
-        default num = 0;
+            case (led_en)
+                8'b01111111: num = mid_num1[15: 12];
+                8'b10111111: num = mid_num1[11: 8];
+                8'b11011111: num = mid_num1[7: 4];
+                8'b11101111: num = mid_num1[3: 0];
+                8'b11110111: num = mid_num2[15: 12];
+                8'b11111011: num = mid_num2[11: 8];
+                8'b11111101: num = mid_num2[7: 4];
+                8'b11111110: num = mid_num2[3: 0];
+                default num = num;
         endcase
     end
 

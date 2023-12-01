@@ -23,20 +23,20 @@
 module led(
     input wire clk,
     input wire rst,
-    input wire key_num,
+    input wire keyboard_en,
+    input wire[3: 0] key_num,
     input wire en,
-    output reg[7: 0] led_en,
-    output reg[7: 0] led_cx
+    output reg [7: 0] led_en,
+    output reg [7: 0] led_cx
     );
 
     reg[31: 0] cnt;
-    wire rst_n = ~rst;
-    wire cnt_end = cnt == 32'd200000;
+    wire cnt_end = cnt == 32'd20000;
     reg[3: 0] num;
     
     
-    always @(posedge clk or negedge rst_n) begin
-        if (~rst_n)
+    always @(posedge clk or posedge rst) begin
+        if (rst)
             cnt <= 32'd1;
         else if (cnt_end)
             cnt <= 32'd1;
@@ -44,22 +44,32 @@ module led(
             cnt <= cnt + 32'd1;
     end
     
-    always @(posedge clk or negedge rst_n) begin
-        if (~rst_n) 
+    always @(posedge clk or posedge rst) begin
+        if (rst) 
             led_en <= 8'b11111111;
         else if (cnt_end)
-            led_en <= {~en[7], en[6: 0]};
+            led_en <= {~led_en[7], led_en[6: 0]};
         else 
             led_en <= led_en;
     end
-
-    always@(*) begin
-        if (en && led_en == 8'b01111111)
-            num <= key_num;
-        else if (~en)
-            num <= Z;
+    
+    reg [3: 0]num_temp; 
+    
+    always @(posedge clk or posedge rst)begin
+        if (rst)
+            num_temp <= 0;
+        else if (keyboard_en)
+            num_temp <= key_num;
+        else 
+            num_temp <= num_temp;
+    end
+    
+    
+    always@(posedge clk) begin
+        if (led_en == 8'b01111111)
+            num <= num_temp;
         else
-            num <= 4'd0;
+            num <= num;
     end
 
     always @(*) begin
@@ -74,13 +84,13 @@ module led(
             4'h7: led_cx = 8'b00011111;
             4'h8: led_cx = 8'b00000001;
             4'h9: led_cx = 8'b00011001;
-            4'ha: led_cx = 8'b;
-            4'hb: led_cx = 8'b;
-            4'hc: led_cx = 8'b;
-            4'hd: led_cx = 8'b;
-            4'he: led_cx = 8'b;
-            4'hf: led_cx = 8'b;
-            Z: led_cx = 8'b;
+            4'ha: led_cx = 8'b00010001;
+            4'hb: led_cx = 8'b11000001;
+            4'hc: led_cx = 8'b11100101;
+            4'hd: led_cx = 8'b10000101;
+            4'he: led_cx = 8'b01100001;
+            4'hf: led_cx = 8'b01110001;
+            1'bz: led_cx = 8'b11110101;
             default led_cx = 8'b00011001;
         endcase
     end

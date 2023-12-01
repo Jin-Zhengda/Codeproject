@@ -23,9 +23,8 @@
 module password(
    input wire clk,
    input wire keyboard_en,
-   input wire keyboard_num,
+   input wire [3:0] keyboard_num,
    input wire rst,
-   input wire cnt_end,
    output reg en
    );
     
@@ -47,29 +46,44 @@ always @(posedge clk or negedge rst_n) begin
    else       current_state <= next_state;
 end
 
+reg [3:0] num_temp;
+always @(*)
+        if (keyboard_en)
+            num_temp = keyboard_num;
+        else 
+            num_temp = num_temp;
+
+wire cnt_end;
+counter #(200, 32) m_counter(
+    .clk(clk), 
+    .reset(rst), 
+    .cnt_inc(1),
+    .cnt_end(cnt_end)
+);
+
 
 always @(*) begin
    case (current_state)
-        S0: if (keyboard_en && cnt_end) begin
-                if(keyboard_num == 'h1) next_state = S1;
+        S0: if (keyboard_en) begin
+                if(num_temp == 4'h0) next_state = S1;
                 else next_state = S4;
             end 
             else next_state = S0;
-        S1: if (keyboard_en && cnt_end) begin
-                if(keyboard_num == 'h2) next_state = S2;
+        S1: if (keyboard_en) begin
+                if(num_temp == 4'h1) next_state = S2;
                 else next_state = S5;
             end 
             else next_state = S1;
-        S2: if (keyboard_en && cnt_end) begin
-                if(keyboard_num == 'h3) next_state = S3;
+        S2: if (keyboard_en) begin
+                if(num_temp == 4'h5) next_state = S3;
                 else next_state = S6;
             end 
             else next_state = S2;
         S3: if (cnt_end) next_state = S3;
             else next_state = S3;
-        S4: if (keyboard_en && cnt_end) next_state = S5;
+        S4: if (keyboard_en) next_state = S5;
             else next_state = S4;
-        S5: if (keyboard_en && cnt_end) next_state = S6;
+        S5: if (keyboard_en) next_state = S6;
             else next_state = S5;
         S6: if (cnt_end) next_state = S0;
             else next_state = S6;
@@ -79,12 +93,12 @@ end
 
 
 always @(posedge clk or negedge rst_n) begin
-   if(~rst_n) out <= 1'b0;
+   if(~rst_n) en <= 1'bz;
    else begin
        case(current_state)
            S3: en <= 1'b1;
            S6: en <= 1'b0;
-           default : en <= Z;
+           default : en <= 1'bz;
        endcase
    end
 end

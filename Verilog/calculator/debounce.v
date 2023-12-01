@@ -12,25 +12,25 @@ module debounce_button(
         reg [31:0] cnt;                                    
  
         always @(posedge clk or posedge rst) begin
-            if (rst) begin
+            if (rst) begin  //复位
                 key_last <= 1'b0;
                 key_now <= 1'b0;
                 key_pulse <= 1'b0;
             end       
             else begin
-                if (key_last == key_now) begin
+                if (key_last == key_now) begin //实时检测按键状态
                     key_now <= key;
                     key_last <= key_now;
                     key_pulse <= 0;
                     cnt <= 32'd1;
                 end
                 else begin
-                    if (cnt >= 32'd1500000) begin
+                    if (cnt >= 32'd15000) begin  //计时完成，开始采样信号
                         key_pulse <= key_now & ~key_last;
                         key_now <= key;
                         key_last <= key_now;
                     end
-                    else
+                    else //计时
                         cnt <= cnt + 32'd1;
                 end
             end        
