@@ -14,12 +14,12 @@ wire        cnt_end;
 wire [7: 0] led_en;
 wire [7: 0] led_cx;
 
-reg [7:0] keycase_cnt;   //按键个数计数
+reg [7:0] keycase_cnt;  
 wire keycase_inc;
 
 parameter CNT_THRESHOLD=5;
 
-counter #(CNT_THRESHOLD, 24) u_test_counter(     //用于生成时序匹配的row信号
+counter #(CNT_THRESHOLD, 24) u_test_counter(    
     .clk(clk), 
     .rst(reset), 
     .cnt_inc(1), 
@@ -87,9 +87,6 @@ always @(*) begin
         8'b0001_11: 
             if(col==4'b1011) row = 4'b1101;
             else row = 4'b1111; 
-//        8'b0001_11: 
-//            if(col==4'b1101) row = 4'b0111;
-//            else row = 4'b1111; 
         default:
             row = 4'b1111; 
     endcase

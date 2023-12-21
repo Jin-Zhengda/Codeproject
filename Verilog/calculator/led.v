@@ -3,7 +3,7 @@
 module led ( 
     input wire clk,
     input wire rst,
-    input wire[15: 0] key_en,
+    input wire key_en,
     input wire equal,
     input wire[3: 0] keyboard_num,
     input wire[15: 0] out,
