@@ -1,18 +1,33 @@
-import numpy as np
-import matplotlib.pyplot as plt
 
-# x = np.array([10, 13, 16, 19, 22, 25, 28, 31])
-# y = np.array([6.36, 5.04, 3.48, 2.36, 1.88, 1.12, 0.82, 0.68])
+from pycaret.regression import *
+import pandas as pd
 
-# plt.rc('font', family = 'SimHei')
-# plt.rc('axes', unicode_minus = False)
-# plt.xlabel("距离(cm)")
-# plt.ylabel("电压(Vpp)")
-# plt.plot(x, y)
-# plt.show()
 
-x = np.array([0.601, 0.598, 0.596, 0.598, 0.598, 0.596])
-y = np.mean(x)
-u = ((1 / 30) * np.sum((x - y) ** 2)) ** 0.5
-print(y)
-print(u)
+data = {
+    'vec1': [1, 2, 3, 4, 5],
+    'vec2': [5, 4, 3, 2, 1],
+    'vec3': [10, 20, 30, 40, 50],
+    '1try': [15, 25, 35, 45, 55],
+    '2try': [20, 30, 40, 50, 60],
+    '3try': [25, 35, 45, 55, 65],
+    '4try': [30, 40, 50, 60, 70],
+    '5try': [35, 45, 55, 65, 75],
+    '6try': [40, 50, 60, 70, 80],
+    '7try': [45, 55, 65, 75, 85]
+}
+
+df = pd.DataFrame(data)
+
+print(len(df)) 
+
+
+
+
+
+
+
+
+
+
+
+
