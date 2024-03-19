@@ -2,38 +2,24 @@
   "configurations": [
     {
       "type": "java",
-      "name": "uniquePaths",
-      "request": "launch",
-      "mainClass": "LeetCode.uniquePaths",
-      "projectName": "Codeproject_5f24c0d9"
-    },
-    {
-      "type": "java",
       "name": "coinChange",
       "request": "launch",
-      "mainClass": "coinChange",
-      "projectName": "Codeproject_5f24c0d9"
-    },
-    {
-      "type": "java",
-      "name": "NumsMedian",
-      "request": "launch",
-      "mainClass": "NumsMedian",
-      "projectName": "Codeproject_5f24c0d9"
+      "mainClass": "LeetCode.coinChange",
+      "projectName": "Codeproject_9aee62b9"
     },
     {
       "MIMode": "gdb",
       "args": [],
       "cwd": "${fileDirname}",
       "env": {
-        "PATH": "D:\\Scoop\\apps\\mingw\\current\\bin;${env:PATH}"
+        "PATH": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:PATH}"
       },
       "environment": [],
       "externalConsole": true,
       "internalConsosleOptions": "neverOpen",
-      "miDebuggerPath": "D:\\Scoop\\apps\\mingw\\current\\bin\\gdb.exe",
+      "miDebuggerPath": "C:\\Softwares\\Enviroments\\Mingw64\\bin\\gdb.exe",
       "name": "single file debug",
-      "preLaunchTask": "ascii check",
+      "preLaunchTask": "single file build",
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
       "request": "launch",
       "stopAtEntry": false,

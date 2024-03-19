@@ -1,7 +1,7 @@
 {
   "options": {
     "env": {
-      "Path": "D:\\Scoop\\apps\\mingw\\current\\bin;${env:Path}"
+      "Path": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:Path}"
     }
   },
   "tasks": [
@@ -11,9 +11,9 @@
         "${file}",
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe",
-        "-std=c++23"
+        "-std=c++17"
       ],
-      "command": "D:\\Scoop\\apps\\mingw\\current\\bin\\g++.exe",
+      "command": "C:\\Softwares\\Enviroments\\Mingw64\\bin\\g++.exe",
       "group": {
         "isDefault": true,
         "kind": "build"
@@ -38,7 +38,7 @@
       "options": {
         "cwd": "${fileDirname}",
         "env": {
-          "Path": "D:\\Scoop\\apps\\mingw\\current\\bin;${env:Path}"
+          "Path": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:Path}"
         }
       },
       "presentation": {
@@ -51,29 +51,6 @@
       },
       "problemMatcher": [],
       "type": "pause-console"
-    },
-    {
-      "args": [
-        "-ExecutionPolicy",
-        "ByPass",
-        "-NoProfile",
-        "-File",
-        "C:\\Users\\daf\\AppData\\Roaming\\vscch/check-ascii.ps1",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-      ],
-      "command": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
-      "dependsOn": "single file build",
-      "label": "ascii check",
-      "presentation": {
-        "clear": true,
-        "echo": false,
-        "focus": false,
-        "panel": "shared",
-        "reveal": "never",
-        "showReuseMessage": false
-      },
-      "problemMatcher": [],
-      "type": "process"
     }
   ],
   "version": "2.0.0"
