@@ -2,9 +2,16 @@
   "configurations": [
     {
       "type": "java",
-      "name": "coinChange",
+      "name": "Circle",
       "request": "launch",
-      "mainClass": "LeetCode.coinChange",
+      "mainClass": "test.Circle",
+      "projectName": "Codeproject_9aee62b9"
+    },
+    {
+      "type": "java",
+      "name": "Test",
+      "request": "launch",
+      "mainClass": "test.Test",
       "projectName": "Codeproject_9aee62b9"
     },
     {

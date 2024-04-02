@@ -1,13 +1,13 @@
 package test;
 
-import Sort.MergeTD;
-
-public class test {
+public class Test {
     public static void main(String args[]) {
-        int[] a = {5, 4, 2, 6, 3, 1};
-        MergeTD mergeTD = new MergeTD();
-        mergeTD.sort(a);
-        System.out.println(mergeTD.getCount());
-        System.out.println(mergeTD.isSorted(a));
+        boolean isValid = false;
+        int[] scores = { 65, 70, 69, 98, 86 };
+        if (isValid) {
+            System.out.println(scores[4]);
+        } else {
+            System.out.println("No information.");
+        }
     }
 }
