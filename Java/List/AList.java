@@ -1,15 +1,17 @@
 package List;
 //可变数组
-public class AList<Item> {
+public class AList<Item extends Number> {
     private Item[] items;
     private int size;
 
+    @SuppressWarnings("unchecked")
     public AList() {
         items = (Item[]) new Object[100];
         size = 0;
     }
 
     private void reszie(int capacity) {
+        @SuppressWarnings("unchecked")
         Item[] temItems = (Item[]) new Object[capacity];
         System.arraycopy(items, 0, temItems, 0, size);
         items = temItems;
@@ -54,6 +56,9 @@ public class AList<Item> {
     }
 
     public static void main(String args[]) {
-        
+        AList<Integer> aList = new AList<>();
+        aList.addLast(1);
+        aList.addLast(2);
+        System.out.println(aList.size());
     }
 }

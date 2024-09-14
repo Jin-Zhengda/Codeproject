@@ -1,8 +1,8 @@
 {
   "configurations": [
     {
-      "compilerPath": "C:\\Softwares\\Enviroments\\Mingw64\\bin\\g++.exe",
-      "cppStandard": "c++17",
+      "compilerPath": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin\\g++.exe",
+      "cppStandard": "c++23",
       "includePath": [
         "${{workspaceFolder}}/**"
       ],

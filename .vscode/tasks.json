@@ -1,7 +1,7 @@
 {
   "options": {
     "env": {
-      "Path": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:Path}"
+      "Path": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin;${env:Path}"
     }
   },
   "tasks": [
@@ -11,9 +11,9 @@
         "${file}",
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe",
-        "-std=c++17"
+        "-std=c++23"
       ],
-      "command": "C:\\Softwares\\Enviroments\\Mingw64\\bin\\g++.exe",
+      "command": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin\\g++.exe",
       "group": {
         "isDefault": true,
         "kind": "build"
@@ -38,7 +38,7 @@
       "options": {
         "cwd": "${fileDirname}",
         "env": {
-          "Path": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:Path}"
+          "Path": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin;${env:Path}"
         }
       },
       "presentation": {

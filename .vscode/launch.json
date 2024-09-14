@@ -2,16 +2,37 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Circle",
+      "name": "Test",
       "request": "launch",
-      "mainClass": "test.Circle",
+      "mainClass": "test.Test",
       "projectName": "Codeproject_9aee62b9"
     },
     {
       "type": "java",
-      "name": "Test",
+      "name": "Footrace",
       "request": "launch",
-      "mainClass": "test.Test",
+      "mainClass": "test.Footrace",
+      "projectName": "Codeproject_9aee62b9"
+    },
+    {
+      "type": "java",
+      "name": "coinChange",
+      "request": "launch",
+      "mainClass": "LeetCode.coinChange",
+      "projectName": "Codeproject_9aee62b9"
+    },
+    {
+      "type": "java",
+      "name": "Circle",
+      "request": "launch",
+      "mainClass": "Circle",
+      "projectName": "Codeproject_9aee62b9"
+    },
+    {
+      "type": "java",
+      "name": "IntMax",
+      "request": "launch",
+      "mainClass": "IntMax",
       "projectName": "Codeproject_9aee62b9"
     },
     {
@@ -19,12 +40,12 @@
       "args": [],
       "cwd": "${fileDirname}",
       "env": {
-        "PATH": "C:\\Softwares\\Enviroments\\Mingw64\\bin;${env:PATH}"
+        "PATH": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin;${env:PATH}"
       },
       "environment": [],
       "externalConsole": true,
       "internalConsosleOptions": "neverOpen",
-      "miDebuggerPath": "C:\\Softwares\\Enviroments\\Mingw64\\bin\\gdb.exe",
+      "miDebuggerPath": "C:\\Softwares\\Enviroments\\Msys64\\ucrt64\\bin\\gdb.exe",
       "name": "single file debug",
       "preLaunchTask": "single file build",
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
